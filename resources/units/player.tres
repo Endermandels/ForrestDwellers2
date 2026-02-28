@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=2 format=3 uid="uid://dxhoju853is36"]
+
+[ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_hm0gi"]
+
+[resource]
+script = ExtResource("1_hm0gi")
+name_id = "Player"
+base_hp = 10
+base_atk = 1
+base_mp = 2
+itm = 4
+metadata/_custom_type_script = "uid://rjnstbmhir1t"

@@ -369,6 +369,7 @@ x Design project architecture
 - Design project architecture
 - Develop Battle
 
+Limit Battle development to the core gameplay aspects before iterating and creating multiple features.
 BATTLE MUST BE FUN BEFORE PUTTING IN THE REST OF THE GAME!
 
 # May
