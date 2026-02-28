@@ -1,10 +1,11 @@
-extends Node
+extends Node # TODO: Extend Saveable
 class_name BattleHandler
 
+@export var state_machine: StateMachine
 var units_queue: Array[UnitRuntime] = []
 
 func _ready() -> void:
-    print("~~~ Battle Handler ~~~")
+    state_machine.data = { "units_queue": units_queue }
 
 func add_unit(unit: UnitRuntime) -> void:
     units_queue.append(unit)
@@ -13,4 +14,4 @@ func add_unit(unit: UnitRuntime) -> void:
 
 ## Handle the next step in the battle
 func step() -> void:
-    pass
+    state_machine.step()
