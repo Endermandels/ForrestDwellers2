@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_hm0gi")
 name_id = "Player"
-base_hp = 10
+is_enemy = false
 base_atk = 1
 base_mp = 2
 itm = 4

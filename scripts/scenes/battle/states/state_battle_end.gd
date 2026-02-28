@@ -6,6 +6,10 @@ func step(data: Dictionary) -> State:
 
 func enter(data: Dictionary) -> void:
     print("~~~ Battle End ~~~")
+    if data.player_won:
+        print("* Player Won!")
+    else:
+        print("* Game Over")
 
 func exit(data: Dictionary) -> void:
     pass

@@ -3,6 +3,7 @@ class_name UnitRuntime
 
 # Runtime Data
 var name_id: String
+var is_enemy: bool = true ## Whether this unit is an enemy of the player or not
 
 # Stats
 var base_hp: int
@@ -19,6 +20,7 @@ var itm: int
 
 func _init(res: UnitResource) -> void:
     name_id = res.name_id
+    is_enemy = res.is_enemy
     base_hp = res.base_hp
     base_atk = res.base_atk
     base_arm = res.base_arm

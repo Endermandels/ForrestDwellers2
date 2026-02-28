@@ -41,9 +41,10 @@ attack_state = NodePath("../StateAttack")
 script = ExtResource("9_66ngm")
 turn_end_state = NodePath("../StateTurnEnd")
 
-[node name="StateTurnEnd" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_start_state")]
+[node name="StateTurnEnd" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "battle_end_state")]
 script = ExtResource("10_03edq")
 turn_start_state = NodePath("../StateTurnStart")
+battle_end_state = NodePath("../StateBattleEnd")
 
 [node name="StateBattleEnd" type="Node" parent="BattleStateMachine"]
 script = ExtResource("11_22uqi")

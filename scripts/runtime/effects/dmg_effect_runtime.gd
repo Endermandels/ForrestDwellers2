@@ -13,6 +13,6 @@ func _init(res: DMGEffectResource) -> void:
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:
     var dmg = value
     if not is_pure:
-        dmg = Helper.at_least_zero(dmg - target.arm)
-        target.arm = Helper.at_least_zero(target.arm - value)
-    target.hp = Helper.at_least_zero(target.hp - dmg)
+        dmg = Helper.clamp_zero(dmg - target.arm)
+        target.arm = Helper.clamp_zero(target.arm - value)
+    target.hp = Helper.clamp_zero(target.hp - dmg)
