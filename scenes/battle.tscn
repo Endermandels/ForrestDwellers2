@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
 [ext_resource type="Script" uid="uid://fpth6bdbxeah" path="res://scripts/scenes/battle/unit_spawner.gd" id="2_p1qf1"]
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="4_a12nh"]
-[ext_resource type="Resource" uid="uid://cdoixu8ii3eji" path="res://resources/units/wolf.tres" id="5_lpir7"]
+[ext_resource type="Resource" uid="uid://ctksvdktlu65h" path="res://resources/units/snake.tres" id="5_66ngm"]
 [ext_resource type="Script" uid="uid://brwygnppu4gbk" path="res://scripts/components/state_machine.gd" id="6_6vh42"]
 [ext_resource type="Script" uid="uid://dd0i66ghxikiq" path="res://scripts/scenes/battle/states/state_battle_start.gd" id="7_4k1nj"]
 [ext_resource type="Script" uid="uid://cs81g1ehpjm0v" path="res://scripts/scenes/battle/states/state_turn_start.gd" id="8_f4pi3"]
@@ -23,7 +23,7 @@ state_machine = NodePath("../BattleStateMachine")
 [node name="UnitSpawner" type="Node" parent="." node_paths=PackedStringArray("battle_handler")]
 script = ExtResource("2_p1qf1")
 battle_handler = NodePath("../BattleHandler")
-enemy_units = Array[ExtResource("4_a12nh")]([ExtResource("5_lpir7")])
+enemy_units = Array[ExtResource("4_a12nh")]([ExtResource("5_66ngm")])
 
 [node name="BattleStateMachine" type="Node" parent="." node_paths=PackedStringArray("cur_state")]
 script = ExtResource("6_6vh42")

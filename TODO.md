@@ -46,7 +46,7 @@
 - When an animal or player levels up, their stats increase (except MP)
 - Some animals drop different items (pelts, teeth, etc.) used for trading with the trader
 ### Event #1
-- Campfire: Heal all but one party members (HP and MP restored).  May heal last party member, but if you do there is a risk that enemies will ambush you, skipping Event #2.
+- Campfire: Heal all but one party members (HP and MP restored, all status effects removed).  May heal last party member, but if you do there is a risk that enemies will ambush you, skipping Event #2.
 ### Event #2
 - Trader: May trade animal loot for items (like in He Is Coming).
 - Blue Fairy: Offer to increase a chosen party member's MP.  However, it may be a trick fairy which will also drain your party member's MP to half.
@@ -101,7 +101,6 @@
 - Passive: Always applicable
 - Discard: Remove this item from inventory after use
 - Alternate X: At the start of every X turn (X = 3 means every third turn)
-- One Time Passive: A passive that is applicable only once
 
 ## Items
 - P Items can be equipped on the player.
@@ -245,7 +244,7 @@
 ### Divine Protection
 - Epic
 - A
-- One Time Passive: If this animal should die, it lives on 1 HP, clears all status effects, and gains Fly 1
+- Passive: If this animal should die, it lives on 1 HP, clears all status effects, and gains Fly 1. Discard.
 
 ### Vampire's Fang
 - Epic

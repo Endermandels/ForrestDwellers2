@@ -3,11 +3,7 @@ class_name DMGEffectRuntime
 
 var is_pure: bool ## Whether it bypasses ARM
 
-func _init(res: DMGEffectResource) -> void:
-    # Defined in EffectRuntime
-    name_id = res.name_id
-    value = res.value
-    # Defined here
+func init(res: DMGEffectResource) -> void:
     is_pure = res.is_pure
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:

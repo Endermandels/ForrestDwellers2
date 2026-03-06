@@ -10,3 +10,5 @@ class_name UnitResource
 @export_range(0, 10) var base_spd: int = 0
 @export_range(0, 10) var base_mp: int = 0
 @export_range(0, 10) var itm: int = 0 ## How many items this unit can carry
+@export_group("Abilities")
+@export var abilities: Array[AbilityResource] = []
