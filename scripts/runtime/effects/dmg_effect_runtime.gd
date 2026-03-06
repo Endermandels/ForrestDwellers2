@@ -12,3 +12,6 @@ func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 		dmg = Helper.clamp_zero(dmg - target.arm)
 		target.arm = Helper.clamp_zero(target.arm - value)
 	target.hp = Helper.clamp_zero(target.hp - dmg)
+	print("* [%s] took [%d] DMG" % [target, dmg])
+	print("* [%s] is at [%d] HP" % [target, target.hp])
+	print("* [%s] is at [%d] ARM" % [target, target.arm])

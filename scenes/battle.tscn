@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbhv0jciwsnok"]
+[gd_scene load_steps=13 format=3 uid="uid://cbhv0jciwsnok"]
 
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bgkqs7fb35c5n" path="res://scripts/scenes/battle/states/state_attack.gd" id="9_66ngm"]
 [ext_resource type="Script" uid="uid://dbwkqwo3f1wst" path="res://scripts/scenes/battle/states/state_turn_end.gd" id="10_03edq"]
 [ext_resource type="Script" uid="uid://ddv8lrddohi4d" path="res://scripts/scenes/battle/states/state_battle_end.gd" id="11_22uqi"]
+[ext_resource type="Script" uid="uid://bfn3vc62w6ol0" path="res://scripts/scenes/battle/states/state_ability_resolution.gd" id="12_03edq"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("battle_handler")]
 script = ExtResource("1_p1qf1")
@@ -37,9 +38,10 @@ turn_start_state = NodePath("../StateTurnStart")
 script = ExtResource("8_f4pi3")
 attack_state = NodePath("../StateAttack")
 
-[node name="StateAttack" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_end_state")]
+[node name="StateAttack" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_end_state", "ability_resolution_state")]
 script = ExtResource("9_66ngm")
 turn_end_state = NodePath("../StateTurnEnd")
+ability_resolution_state = NodePath("../StateAbilityResolution")
 
 [node name="StateTurnEnd" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "battle_end_state")]
 script = ExtResource("10_03edq")
@@ -50,3 +52,4 @@ battle_end_state = NodePath("../StateBattleEnd")
 script = ExtResource("11_22uqi")
 
 [node name="StateAbilityResolution" type="Node" parent="BattleStateMachine"]
+script = ExtResource("12_03edq")

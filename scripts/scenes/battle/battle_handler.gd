@@ -14,7 +14,7 @@ func add_unit(unit: UnitRuntime) -> void:
 	print("* Added unit: [%s]" % unit)
 
 static func get_targets(target_rule: Constants.TargetRule, source: UnitRuntime, units: Array[UnitRuntime]) -> Array[UnitRuntime]:
-	var res = []
+	var res: Array[UnitRuntime] = []
 	if target_rule == Constants.TargetRule.ENEMY:
 		res.append(source.engaged_enemy)
 	else:

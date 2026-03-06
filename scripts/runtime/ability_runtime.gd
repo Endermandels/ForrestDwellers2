@@ -15,6 +15,9 @@ func _init(res: AbilityResource, source: UnitRuntime) -> void:
 		var runtime = EffectRuntime.from_resource(e)
 		effects.append(runtime)
 
+func _to_string() -> String:
+	return name_id
+
 func apply(units: Array[UnitRuntime]) -> void:
 	for e in effects:
 		var targets = BattleHandler.get_targets(e.target_rule, source_unit, units)

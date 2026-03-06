@@ -1,7 +1,7 @@
 extends State
 class_name StateAbilityResolution
 
-var return_state: State
+var next_state: State ## Which state to go to after this one
 
 func step(data: Dictionary) -> State:
 	var state: State = null
@@ -12,13 +12,13 @@ func step(data: Dictionary) -> State:
 		print("* [%s] used [%s]" % [ability.source_unit, ability])
 		ability.apply(data.units_queue)
 	else:
-		state = return_state
+		state = next_state
 
 	return state
 
 func enter(data: Dictionary) -> void:
 	print("~~~ Ability Resolution ~~~")
-	return_state = data.prev_state
+	next_state = data.next_state
 
 func exit(data: Dictionary) -> void:
 	pass

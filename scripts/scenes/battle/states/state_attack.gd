@@ -13,11 +13,10 @@ func step(data: Dictionary) -> State:
 
 	var dmg_res = DMGEffectResource.new()
 	var dmg_run = DMGEffectRuntime.new(dmg_res)
+
+	cur_unit.engaged_enemy = target
 	dmg_run.value = cur_unit.atk
 	dmg_run.apply(cur_unit, target)
-
-	print("* [%s] attacked [%s] for [%d] DMG" % [cur_unit, target, cur_unit.atk])
-	print("* [%s] is at [%d] HP" % [target, target.hp])
 
 	for a: AbilityRuntime in cur_unit.abilities[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
 		abilities_queue.append(a)
@@ -32,4 +31,4 @@ func enter(data: Dictionary) -> void:
 	print("~~~ [%s] Attack ~~~" % cur_unit)
 
 func exit(data: Dictionary) -> void:
-	data["prev_state"] = self
+	data["next_state"] = turn_end_state
