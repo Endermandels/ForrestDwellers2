@@ -21,27 +21,27 @@ var mp: int
 var itm: int
 
 func _init(res: UnitResource) -> void:
-    name_id = res.name_id
-    is_enemy = res.is_enemy
-    base_hp = res.base_hp
-    base_atk = res.base_atk
-    base_arm = res.base_arm
-    base_spd = res.base_spd
-    base_mp = res.base_mp
-    itm = res.itm
-    hp = base_hp
-    atk = base_atk
-    arm = base_arm
-    spd = base_spd
-    mp = base_mp
-    
-    for t in Constants.Trigger.keys():
-        abilities[t] = []
+	name_id = res.name_id
+	is_enemy = res.is_enemy
+	base_hp = res.base_hp
+	base_atk = res.base_atk
+	base_arm = res.base_arm
+	base_spd = res.base_spd
+	base_mp = res.base_mp
+	itm = res.itm
+	hp = base_hp
+	atk = base_atk
+	arm = base_arm
+	spd = base_spd
+	mp = base_mp
 
-    for a in res.abilities:
-        var runtime = AbilityRuntime.new(a, self)
-        for t in runtime.triggers:
-            abilities[Constants.Trigger.keys()[t]].append(runtime)
+	for t in Constants.Trigger.keys():
+		abilities[t] = []
+
+	for a in res.abilities:
+		var runtime = AbilityRuntime.new(a, self)
+		for t in runtime.triggers:
+			abilities[Constants.Trigger.keys()[t]].append(runtime)
 
 func _to_string() -> String:
-    return name_id
+	return name_id

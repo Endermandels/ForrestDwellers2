@@ -5,11 +5,11 @@ class_name StateMachine
 @export var data: Dictionary ## Data that can be modified by the states (optional)
 
 func _ready() -> void:
-    cur_state.enter(data)
+	cur_state.enter(data)
 
 func step() -> void:
-    var new_state = cur_state.step(data)
-    if new_state:
-        cur_state.exit(data)
-        new_state.enter(data)
-        cur_state = new_state
+	var new_state = cur_state.step(data)
+	if new_state:
+		cur_state.exit(data)
+		new_state.enter(data)
+		cur_state = new_state

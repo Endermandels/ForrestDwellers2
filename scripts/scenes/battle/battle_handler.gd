@@ -17,6 +17,8 @@ static func get_targets(target_rule: Constants.TargetRule, source: UnitRuntime, 
 	var res = []
 	if target_rule == Constants.TargetRule.ENEMY:
 		res.append(source.engaged_enemy)
+	else:
+		push_error("Unknown Target Rule: " + Constants.TargetRule.keys()[target_rule])
 	return res
 
 ## Handle the next step in the battle
