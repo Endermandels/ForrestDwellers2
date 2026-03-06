@@ -8,6 +8,7 @@ func step(data: Dictionary) -> State:
 
 	var abilities_queue: Array[AbilityRuntime] = data.abilities_queue
 	var ability: AbilityRuntime = abilities_queue.pop_front()
+	
 	if ability:
 		print("* [%s] used [%s]" % [ability.source_unit, ability])
 		ability.apply(data.units_queue)

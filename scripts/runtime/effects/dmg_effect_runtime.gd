@@ -8,6 +8,7 @@ func init(res: DMGEffectResource) -> void:
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 	var dmg = value
+	
 	if not is_pure:
 		dmg = Helper.clamp_zero(dmg - target.arm)
 		target.arm = Helper.clamp_zero(target.arm - value)

@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func step() -> void:
 	var new_state = cur_state.step(data)
+	
 	if new_state:
 		cur_state.exit(data)
 		new_state.enter(data)

@@ -41,6 +41,7 @@ func _init(res: UnitResource) -> void:
 
 	for a in res.abilities:
 		var runtime = AbilityRuntime.new(a, self)
+
 		abilities.append(runtime)
 		for t in runtime.triggers:
 			abilities_dict[Constants.Trigger.keys()[t]].append(runtime)

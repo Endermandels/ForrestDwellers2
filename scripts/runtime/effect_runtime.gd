@@ -4,6 +4,7 @@ class_name EffectRuntime
 var name_id: String
 var value: int
 var target_rule: Constants.TargetRule
+
 # TODO: Expand as necessary
 
 static func from_resource(res: EffectResource) -> EffectRuntime:

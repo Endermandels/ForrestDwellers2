@@ -8,6 +8,7 @@ func step(data: Dictionary) -> State:
 
 func enter(data: Dictionary) -> void:
 	var cur_unit: UnitRuntime = data.units_queue[0]
+
 	print("~~~ [%s] Turn Start ~~~" % cur_unit)
 
 func exit(data: Dictionary) -> void:
