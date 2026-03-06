@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=5 format=3 uid="uid://8w2sbqtlu371"]
+
+[ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="1_mlxw7"]
+[ext_resource type="Script" uid="uid://d4i404qjxo07l" path="res://scripts/resources/effects/dmg_effect_resource.gd" id="2_dbtjg"]
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="2_mnxqt"]
+
+[sub_resource type="Resource" id="Resource_7afc8"]
+script = ExtResource("2_dbtjg")
+is_pure = true
+target_rule = 1
+metadata/_custom_type_script = "uid://d4i404qjxo07l"
+
+[resource]
+script = ExtResource("2_mnxqt")
+name_id = "Venom"
+triggers = Array[int]([3])
+effects = Array[ExtResource("1_mlxw7")]([SubResource("Resource_7afc8")])
+metadata/_custom_type_script = "uid://dpoiljl72xoph"

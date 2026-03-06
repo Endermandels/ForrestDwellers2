@@ -48,3 +48,5 @@ battle_end_state = NodePath("../StateBattleEnd")
 
 [node name="StateBattleEnd" type="Node" parent="BattleStateMachine"]
 script = ExtResource("11_22uqi")
+
+[node name="StateAbilityResolution" type="Node" parent="BattleStateMachine"]
