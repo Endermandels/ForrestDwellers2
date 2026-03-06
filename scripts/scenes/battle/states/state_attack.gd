@@ -18,7 +18,7 @@ func step(data: Dictionary) -> State:
 	dmg_run.value = cur_unit.atk
 	dmg_run.apply(cur_unit, target)
 
-	for a: AbilityRuntime in cur_unit.abilities[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
+	for a: AbilityRuntime in cur_unit.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
 		abilities_queue.append(a)
 
 	if abilities_queue.size() > 0:

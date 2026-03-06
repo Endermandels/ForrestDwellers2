@@ -4,7 +4,8 @@ class_name UnitRuntime
 # Runtime Data
 var name_id: String
 var is_enemy: bool = true ## Whether this unit is an enemy of the player or not
-var abilities: Dictionary[String, Array] = {} ## Constants.Trigger: Array of Abilities
+var abilities_dict: Dictionary[String, Array] = {} ## Constants.Trigger: Array of Abilities
+var abilities: Array[AbilityRuntime] = [] ## All abilities associated with this unit
 var engaged_enemy: UnitRuntime ## The enemy unit this unit is currently attacking
 
 # Stats
@@ -36,12 +37,13 @@ func _init(res: UnitResource) -> void:
 	mp = base_mp
 
 	for t in Constants.Trigger.keys():
-		abilities[t] = []
+		abilities_dict[t] = []
 
 	for a in res.abilities:
 		var runtime = AbilityRuntime.new(a, self)
+		abilities.append(runtime)
 		for t in runtime.triggers:
-			abilities[Constants.Trigger.keys()[t]].append(runtime)
+			abilities_dict[Constants.Trigger.keys()[t]].append(runtime)
 
 func _to_string() -> String:
 	return name_id
