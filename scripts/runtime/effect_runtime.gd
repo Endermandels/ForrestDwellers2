@@ -1,4 +1,4 @@
-extends Node
+extends RefCounted
 class_name EffectRuntime
 
 var name_id: String
@@ -21,6 +21,9 @@ func _init(res: EffectResource) -> void:
 func _to_string() -> String:
     return name_id
 
+## Override hook called by [method _init] after base fields are populated.
+## Subclasses use this to read subtype-specific fields from [param res].
+## The caller always passes the concrete resource subtype (e.g. [DMGEffectResource]).
 func init(res) -> void:
     # TODO: Implement
     pass
