@@ -4,32 +4,46 @@ class_name StateAttack
 @export var turn_end_state: State
 @export var ability_resolution_state: State
 
-func step(data: Dictionary) -> State:
+func step(data: BattleStateData) -> State:
 	var state: State = turn_end_state
 
-	var cur_unit: UnitRuntime = data.units_queue[0]
-	var target: UnitRuntime = data.units_queue[1]
+	var attacker: UnitRuntime = data.units_queue[0]
 	var abilities_queue: Array[AbilityRuntime] = data.abilities_queue
 
-	var dmg_res = DMGEffectResource.new()
-	var dmg_run = DMGEffectRuntime.new(dmg_res)
+	var defender: UnitRuntime = data.defenders_queue.pop_front()
 
-	cur_unit.engaged_enemy = target
-	dmg_run.value = cur_unit.atk
-	dmg_run.apply(cur_unit, target)
+	if defender:
+		var dmg_res = DMGEffectResource.new()
+		var dmg_run = DMGEffectRuntime.new(dmg_res)
 
-	for a: AbilityRuntime in cur_unit.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
-		abilities_queue.append(a)
+		# Track engaged opponents
+		attacker.engaged_opponent = defender
+		defender.engaged_opponent = attacker
 
-	if abilities_queue.size() > 0:
-		state = ability_resolution_state
+		# Apply attacker's damage to defender
+		dmg_run.value = attacker.atk
+		dmg_run.apply(attacker, defender)
+
+		# Load abilities queue
+		for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
+			abilities_queue.append(a)
+
+		# Transition to Ability Resolution State if there are abilities to resolve
+		if abilities_queue.size() > 0:
+			state = ability_resolution_state
+	else:
+		print("* No valid targets left")
 
 	return state
 
-func enter(data: Dictionary) -> void:
+func enter(data: BattleStateData) -> void:
 	var cur_unit: UnitRuntime = data.units_queue[0]
 
 	print("~~~ [%s] Attack ~~~" % cur_unit)
+	if data.defenders_queue.size() == 0:
+		# Initialize defenders_queue
+		data.defenders_queue = BattlefieldHandler.get_targets(cur_unit.attack_target_rule, cur_unit, data.battlefield)
 
-func exit(data: Dictionary) -> void:
-	data["next_state"] = turn_end_state
+func exit(data: BattleStateData) -> void:
+	# If there are more defenders left, Ability Resolution State should return to Attack State
+	data.next_state = turn_end_state if (data.defenders_queue.size() == 0) else self

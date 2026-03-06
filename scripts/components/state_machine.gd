@@ -2,15 +2,16 @@ extends Node
 class_name StateMachine
 
 @export var cur_state: State ## Must be initialized to the starting state
-@export var data: Dictionary ## Data that can be modified by the states (optional)
+var _data: StateData ## Data that can be modified by the states (optional)
 
-func _ready() -> void:
-	cur_state.enter(data)
+func init(data: StateData) -> void:
+	_data = data
+	cur_state.enter(_data)
 
 func step() -> void:
-	var new_state = cur_state.step(data)
+	var new_state = cur_state.step(_data)
 	
 	if new_state:
-		cur_state.exit(data)
-		new_state.enter(data)
+		cur_state.exit(_data)
+		new_state.enter(_data)
 		cur_state = new_state

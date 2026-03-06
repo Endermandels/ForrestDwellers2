@@ -3,10 +3,16 @@ class_name UnitRuntime
 
 # Runtime Data
 var name_id: String
-var is_enemy: bool = true ## Whether this unit is an enemy of the player or not
-var abilities_dict: Dictionary[String, Array] = {} ## Constants.Trigger: Array of Abilities
-var abilities: Array[AbilityRuntime] = [] ## All abilities associated with this unit
-var engaged_enemy: UnitRuntime ## The enemy unit this unit is currently attacking
+var is_enemy: bool ## Whether this unit is an enemy of the player or not
+var attack_target_rule: Constants.TargetRule ## TargetRule for choosing defenders of this unit's attack
+var battlefield_width: int ## How many columns this unit takes up on the battlefield
+var battlefield_length: int ## How many rows this unit takes up on the battlefield
+var position: int ## The top left battle field index this unit occupies
+
+var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
+var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
+var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
+
 
 # Stats
 var base_hp: int
@@ -35,6 +41,14 @@ func _init(res: UnitResource) -> void:
 	arm = base_arm
 	spd = base_spd
 	mp = base_mp
+
+	attack_target_rule = res.attack_target_rule
+	battlefield_width = res.battlefield_width
+	battlefield_length = res.battlefield_length
+	position = 0
+
+	abilities_dict = {}
+	abilities = []
 
 	for t in Constants.Trigger.keys():
 		abilities_dict[t] = []

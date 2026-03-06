@@ -3,14 +3,14 @@ class_name StateBattleStart
 
 @export var turn_start_state: State
 
-func step(data: Dictionary) -> State:
+func step(data: BattleStateData) -> State:
 	return turn_start_state
 
-func enter(data: Dictionary) -> void:
+func enter(data: BattleStateData) -> void:
 	var units_queue: Array[UnitRuntime] = data.units_queue
 
 	print("~~~ Battle Start ~~~")
 	units_queue.sort_custom(func (a: UnitRuntime, b: UnitRuntime): return a.spd > b.spd)
 
-func exit(data: Dictionary) -> void:
+func exit(data: BattleStateData) -> void:
 	pass

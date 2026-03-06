@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbhv0jciwsnok"]
+[gd_scene load_steps=14 format=3 uid="uid://cbhv0jciwsnok"]
 
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
@@ -12,44 +12,49 @@
 [ext_resource type="Script" uid="uid://dbwkqwo3f1wst" path="res://scripts/scenes/battle/states/state_turn_end.gd" id="10_03edq"]
 [ext_resource type="Script" uid="uid://ddv8lrddohi4d" path="res://scripts/scenes/battle/states/state_battle_end.gd" id="11_22uqi"]
 [ext_resource type="Script" uid="uid://bfn3vc62w6ol0" path="res://scripts/scenes/battle/states/state_ability_resolution.gd" id="12_03edq"]
+[ext_resource type="Script" uid="uid://b8os75onks5wp" path="res://scripts/scenes/battle/battlefield_handler.gd" id="13_22uqi"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("battle_handler")]
 script = ExtResource("1_p1qf1")
 battle_handler = NodePath("BattleHandler")
 
-[node name="BattleHandler" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
+[node name="BattleHandler" type="Node" parent="." node_paths=PackedStringArray("state_machine", "unit_spawner", "battlefield_handler")]
 script = ExtResource("1_th188")
-state_machine = NodePath("../BattleStateMachine")
+state_machine = NodePath("BattleStateMachine")
+unit_spawner = NodePath("UnitSpawner")
+battlefield_handler = NodePath("BattlefieldHandler")
 
-[node name="UnitSpawner" type="Node" parent="." node_paths=PackedStringArray("battle_handler")]
+[node name="UnitSpawner" type="Node" parent="BattleHandler"]
 script = ExtResource("2_p1qf1")
-battle_handler = NodePath("../BattleHandler")
 enemy_units = Array[ExtResource("4_a12nh")]([ExtResource("5_66ngm")])
 
-[node name="BattleStateMachine" type="Node" parent="." node_paths=PackedStringArray("cur_state")]
+[node name="BattleStateMachine" type="Node" parent="BattleHandler" node_paths=PackedStringArray("cur_state")]
 script = ExtResource("6_6vh42")
 cur_state = NodePath("StateBattleStart")
 
-[node name="StateBattleStart" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_start_state")]
+[node name="StateBattleStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state")]
 script = ExtResource("7_4k1nj")
 turn_start_state = NodePath("../StateTurnStart")
 
-[node name="StateTurnStart" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("attack_state")]
+[node name="StateTurnStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("attack_state")]
 script = ExtResource("8_f4pi3")
 attack_state = NodePath("../StateAttack")
 
-[node name="StateAttack" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_end_state", "ability_resolution_state")]
+[node name="StateAttack" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_end_state", "ability_resolution_state")]
 script = ExtResource("9_66ngm")
 turn_end_state = NodePath("../StateTurnEnd")
 ability_resolution_state = NodePath("../StateAbilityResolution")
 
-[node name="StateTurnEnd" type="Node" parent="BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "battle_end_state")]
+[node name="StateTurnEnd" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "battle_end_state")]
 script = ExtResource("10_03edq")
 turn_start_state = NodePath("../StateTurnStart")
 battle_end_state = NodePath("../StateBattleEnd")
 
-[node name="StateBattleEnd" type="Node" parent="BattleStateMachine"]
+[node name="StateBattleEnd" type="Node" parent="BattleHandler/BattleStateMachine"]
 script = ExtResource("11_22uqi")
 
-[node name="StateAbilityResolution" type="Node" parent="BattleStateMachine"]
+[node name="StateAbilityResolution" type="Node" parent="BattleHandler/BattleStateMachine"]
 script = ExtResource("12_03edq")
+
+[node name="BattlefieldHandler" type="Node" parent="BattleHandler"]
+script = ExtResource("13_22uqi")

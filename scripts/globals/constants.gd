@@ -14,9 +14,10 @@ enum Trigger {
 }
 
 enum TargetRule {
-	SELF,
-	ENEMY,
-	ALL_ENEMIES,
-	ALL_ALLIES,
-	ALL,
+	SELF, ## This unit
+	OPPONENT_ACROSS, ## Opponent directly opposing this unit
+	OPPONENT_ENGAGED, ## Opponent this unit is in combat with
+	ALL_OPPONENTS, ## All opposing units
+	ALL_ALLIES, ## All allied units
+	ALL, ## All units
 }
