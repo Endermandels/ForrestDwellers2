@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbhv0jciwsnok"]
+[gd_scene load_steps=14 format=3 uid="uid://cbhv0jciwsnok"]
 
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
@@ -13,12 +13,10 @@
 [ext_resource type="Script" uid="uid://ddv8lrddohi4d" path="res://scripts/scenes/battle/states/state_battle_end.gd" id="11_22uqi"]
 [ext_resource type="Script" uid="uid://bfn3vc62w6ol0" path="res://scripts/scenes/battle/states/state_ability_resolution.gd" id="12_03edq"]
 [ext_resource type="Script" uid="uid://b8os75onks5wp" path="res://scripts/scenes/battle/battlefield_handler.gd" id="13_22uqi"]
-[ext_resource type="PackedScene" uid="uid://6hvlpbn4qmbg" path="res://scenes/components/console.tscn" id="14_6ni85"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("battle_handler", "console")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("battle_handler")]
 script = ExtResource("1_p1qf1")
 battle_handler = NodePath("BattleHandler")
-console = NodePath("Console")
 
 [node name="BattleHandler" type="Node" parent="." node_paths=PackedStringArray("state_machine", "unit_spawner", "battlefield_handler")]
 script = ExtResource("1_th188")
@@ -60,9 +58,3 @@ script = ExtResource("12_03edq")
 
 [node name="BattlefieldHandler" type="Node" parent="BattleHandler"]
 script = ExtResource("13_22uqi")
-
-[node name="Console" parent="." instance=ExtResource("14_6ni85")]
-offset_left = 8.0
-offset_top = 368.0
-offset_right = 48.0
-offset_bottom = 408.0

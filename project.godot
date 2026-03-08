@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameState="*res://scripts/globals/game_state.gd"
 Helper="*res://scripts/globals/helper_functions.gd"
 Constants="*res://scripts/globals/constants.gd"
+Console="*res://scenes/components/console.tscn"
 
 [debug]
 

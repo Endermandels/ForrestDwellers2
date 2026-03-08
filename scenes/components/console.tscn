@@ -5,8 +5,10 @@
 [node name="Console" type="Control" node_paths=PackedStringArray("scroll_box", "chat_box", "line_edit")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 368.0
+offset_right = 48.0
+offset_bottom = 408.0
 script = ExtResource("1_k8p3b")
 scroll_box = NodePath("PanelContainer/VBoxContainer/ScrollContainer")
 chat_box = NodePath("PanelContainer/VBoxContainer/ScrollContainer/ChatBox")

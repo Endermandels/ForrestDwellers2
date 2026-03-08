@@ -1,23 +1,45 @@
 extends Control
-class_name Console
+# Global
 
+@export var command_char: String = "/" ## Character denoting command (like /debug)
 @export var history_limit: int = 100 ## Number of labels before start to delete new labels
+@export_group("Nodes")
 @export var scroll_box: ScrollContainer
 @export var chat_box: VBoxContainer
 @export var line_edit: LineEdit
 
+var command_received: String = ""
+
 func _ready() -> void:
 	hide()
 	line_edit.text_submitted.connect(_on_line_edit_text_submitted)
-	line_edit.text_changed.connect(_on_line_edit_text_changed)
-
-func _on_line_edit_text_changed(new_text: String) -> void:
-	if new_text.contains("`"):
-		toggle()
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	add_text_to_chat_box(new_text)
+	if new_text.begins_with(command_char):
+		command_received = new_text.substr(1).strip_edges() # Store command received
+	else:
+		print_to_chat(new_text)
 	line_edit.text = ""
+
+## Get command_received (resets command_received to "")
+func get_command() -> String:
+	var res = command_received
+	command_received = ""
+	return res
+
+## Add a Label to the Chat Box
+func print_to_chat(text: String, col: Color = Color.WHITE) -> void:
+	var label: Label = Label.new()
+
+	label.text = text
+	label.modulate = col
+	chat_box.add_child(label)
+	
+	if chat_box.get_child_count() > history_limit:
+		chat_box.get_child(0).queue_free()
+
+	await get_tree().process_frame # Need to wait before child is registered
+	scroll_box.ensure_control_visible(label)
 
 ## Toggle showing or hiding the console
 func toggle() -> void:
@@ -27,16 +49,3 @@ func toggle() -> void:
 		show()
 	else:
 		hide()
-
-## Add a Label to the Chat Box
-func add_text_to_chat_box(text: String) -> void:
-	var label: Label = Label.new()
-
-	label.text = text
-	chat_box.add_child(label)
-	
-	if chat_box.get_child_count() > history_limit:
-		chat_box.get_child(0).queue_free()
-
-	await get_tree().process_frame # Need to wait before child is registered
-	scroll_box.ensure_control_visible(label)
