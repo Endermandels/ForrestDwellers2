@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	var command: String = Console.get_command()
 	if command != "" and not command in COMMANDS.keys():
 		push_warning("Invalid command: '%s'" % command)
-		Console.print_to_chat("! Invalid command: '%s'" % command, Color.RED)
+		Console.print_line("! Invalid command: '%s'" % command, Color.RED)
 
 	if Input.is_action_just_pressed("select") or command == COMMANDS.step or command == COMMANDS.s: # TODO: Add animation check
 		battle_handler.step()

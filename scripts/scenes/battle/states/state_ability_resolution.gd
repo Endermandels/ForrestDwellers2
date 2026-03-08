@@ -10,7 +10,7 @@ func step(data: BattleStateData) -> State:
 	var ability: AbilityRuntime = abilities_queue.pop_front()
 	
 	if ability:
-		print("* [%s] used [%s]" % [ability.source_unit, ability])
+		Console.print_line("* [%s] used [%s]" % [ability.source_unit, ability])
 		ability.apply(data.battlefield)
 	else:
 		state = next_state
@@ -18,7 +18,7 @@ func step(data: BattleStateData) -> State:
 	return state
 
 func enter(data: BattleStateData) -> void:
-	print("~~~ Ability Resolution ~~~")
+	Console.print_line("~~~ Ability Resolution ~~~")
 	next_state = data.next_state
 
 func exit(data: BattleStateData) -> void:

@@ -29,7 +29,7 @@ func step(data: BattleStateData) -> State:
 func enter(data: BattleStateData) -> void:
 	var cur_unit: UnitRuntime = data.units_queue[0]
 
-	print("~~~ [%s] Turn End ~~~" % cur_unit)
+	Console.print_line("~~~ [%s] Turn End ~~~" % cur_unit)
 
 func exit(data: BattleStateData) -> void:
 	# Move front of queue unit to back of queue

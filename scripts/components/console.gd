@@ -3,6 +3,8 @@ extends Control
 
 @export var command_char: String = "/" ## Character denoting command (like /debug)
 @export var history_limit: int = 100 ## Number of labels before start to delete new labels
+@export var default_text_color: Color = Color.DIM_GRAY ## Default color of print_line text
+@export var default_text_submit_color: Color = Color.WHITE ## Default color of submitted text
 @export_group("Nodes")
 @export var scroll_box: ScrollContainer
 @export var chat_box: VBoxContainer
@@ -18,7 +20,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text.begins_with(command_char):
 		command_received = new_text.substr(1).strip_edges() # Store command received
 	else:
-		print_to_chat(new_text)
+		print_line(new_text, default_text_submit_color)
 	line_edit.text = ""
 
 ## Get command_received (resets command_received to "")
@@ -28,7 +30,7 @@ func get_command() -> String:
 	return res
 
 ## Add a Label to the Chat Box
-func print_to_chat(text: String, col: Color = Color.WHITE) -> void:
+func print_line(text: String, col: Color = default_text_color) -> void:
 	var label: Label = Label.new()
 
 	label.text = text
@@ -40,6 +42,8 @@ func print_to_chat(text: String, col: Color = Color.WHITE) -> void:
 
 	await get_tree().process_frame # Need to wait before child is registered
 	scroll_box.ensure_control_visible(label)
+
+	print(text) # Why not?
 
 ## Toggle showing or hiding the console
 func toggle() -> void:

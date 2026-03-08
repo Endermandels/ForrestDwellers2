@@ -29,7 +29,7 @@ func add_unit(unit: UnitRuntime) -> void:
 	for a in unit.abilities:
 		unit.add_child(a)
 
-	print("* Added unit: [%s]" % unit)
+	Console.print_line("* Added unit: [%s]" % unit)
 
 ## Handle the next step in the battle
 func step() -> void:

@@ -5,11 +5,11 @@ func step(data: BattleStateData) -> State:
 	return null
 
 func enter(data: BattleStateData) -> void:
-	print("~~~ Battle End ~~~")
+	Console.print_line("~~~ Battle End ~~~")
 	if data.player_won:
-		print("* Player Won!")
+		Console.print_line("* Player Won!")
 	else:
-		print("* Game Over")
+		Console.print_line("* Game Over")
 
 func exit(data: BattleStateData) -> void:
 	pass

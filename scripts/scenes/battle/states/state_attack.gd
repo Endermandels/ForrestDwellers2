@@ -32,14 +32,14 @@ func step(data: BattleStateData) -> State:
 		if abilities_queue.size() > 0:
 			state = ability_resolution_state
 	else:
-		print("* No valid targets left")
+		Console.print_line("* No valid targets left")
 
 	return state
 
 func enter(data: BattleStateData) -> void:
 	var cur_unit: UnitRuntime = data.units_queue[0]
 
-	print("~~~ [%s] Attack ~~~" % cur_unit)
+	Console.print_line("~~~ [%s] Attack ~~~" % cur_unit)
 	if data.defenders_queue.size() == 0:
 		# Initialize defenders_queue
 		data.defenders_queue = BattlefieldHandler.get_targets(cur_unit.attack_target_rule, cur_unit, data.battlefield)
