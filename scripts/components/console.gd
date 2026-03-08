@@ -45,6 +45,11 @@ func print_line(text: String, col: Color = default_text_color) -> void:
 
 	print(text) # Why not?
 
+## Clear the Chat Box
+func clear() -> void:
+	for n in chat_box.get_children():
+		n.queue_free()
+
 ## Toggle showing or hiding the console
 func toggle() -> void:
 	if not visible:

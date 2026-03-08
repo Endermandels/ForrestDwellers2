@@ -3,20 +3,34 @@ class_name Battle
 
 @export var battle_handler: BattleHandler
 
+## Command: Array of strings associated with said command
 const COMMANDS = {
-	"step": "step", "s": "s",
-	"exit": "exit", "quit": "quit",
+	"step": ["step", "s"],
+	"quit": ["exit", "quit"],
+	"clear": ["clear"]
 }
 
 func _process(delta: float) -> void:
-	var command: String = Console.get_command()
-	if command != "" and not command in COMMANDS.keys():
-		push_warning("Invalid command: '%s'" % command)
-		Console.print_line("! Invalid command: '%s'" % command, Color.RED)
+	var command: String = ""
 
-	if Input.is_action_just_pressed("select") or command == COMMANDS.step or command == COMMANDS.s: # TODO: Add animation check
-		battle_handler.step()
-	if Input.is_action_just_pressed("cancel") or command == COMMANDS.exit or command == COMMANDS.quit:
-		get_tree().quit()
 	if Input.is_action_just_pressed("console"):
-		Console.toggle()
+			Console.toggle()
+
+	if Console.visible:
+		command = Console.get_command()
+	else:
+		if Input.is_action_just_pressed("select"): # TODO: Add animation check
+			command = COMMANDS.step[0]
+		if Input.is_action_just_pressed("cancel"):
+			command = COMMANDS.quit[0]
+
+	if command != "":
+		if command in COMMANDS.step:
+			battle_handler.step()
+		elif command in COMMANDS.quit:
+			get_tree().quit()
+		elif command in COMMANDS.clear:
+			Console.clear()
+		else:
+			push_warning("Invalid command: '%s'" % command)
+			Console.print_line("! Invalid command: '%s'" % command, Color.RED)
