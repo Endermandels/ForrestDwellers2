@@ -22,3 +22,10 @@ func add_unit(unit: UnitRuntime) -> void:
 
 	assert(battlefield[pos] == null, "Battlefield space R%dC%d occupied by [%s]!" % [row, col, battlefield[pos]])
 	battlefield[pos] = unit
+
+func print_battlefield() -> void:
+	for row in range(Constants.BF_ROWS):
+		var line = " | "
+		for col in range(Constants.BF_COLS):
+			line += "%s | " % battlefield[Helper.get_pos(row, col)]
+		Console.print_line(line)

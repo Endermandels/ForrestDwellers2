@@ -51,13 +51,16 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 			for col in range(cols):
 				for r in range(rows):
 					var row: int = src_row + r * dir # Traverse up or down depending on whether the source is an ally or an enemy
+					
+					# Check for out of bounds row
+					if row < 0 or row >= rows:
+						break # Continue to the next column
+
+					Console.print_line("Looking at R %d C %d" % [row, col])
 					var pos: int = Helper.get_pos(row, col)
 					var target: UnitRuntime = bf[pos]
 					var is_direct: bool = col == src_col
 					
-					# Check for out of bounds row
-					if row < 0 or row > rows:
-						break # Continue to the next column
 					
 					if target and target != source:
 						if source.is_backline and source.is_enemy == target.is_enemy:

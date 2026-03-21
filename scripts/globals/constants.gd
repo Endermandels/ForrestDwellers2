@@ -26,3 +26,7 @@ enum TargetRule {
 const BF_ROWS = 4
 ## Number of columns in the battlefield
 const BF_COLS = 3
+const BF_ENEMY_BACKLINE_ROW = 0
+const BF_ENEMY_FRONTLINE_ROW = 1
+const BF_PLAYER_FRONTLINE_ROW = 2
+const BF_PLAYER_BACKLINE_ROW = 3

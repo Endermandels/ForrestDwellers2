@@ -42,10 +42,10 @@ func print_line(text: String, col: Color = default_text_color) -> void:
 	if chat_box.get_child_count() > history_limit:
 		chat_box.get_child(0).queue_free()
 
+	print(text) # Why not?
+
 	await get_tree().process_frame # Need to wait before child is registered
 	scroll_box.ensure_control_visible(label)
-
-	print(text) # Why not?
 
 ## Clear the Chat Box
 func clear() -> void:

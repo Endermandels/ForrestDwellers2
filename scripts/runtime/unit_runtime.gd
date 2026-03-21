@@ -61,4 +61,4 @@ func _init(res: UnitResource) -> void:
 			abilities_dict[Constants.Trigger.keys()[t]].append(runtime)
 
 func _to_string() -> String:
-	return name_id
+	return "%s @ (R%d, C%d)" % [name_id, Helper.get_row(position), Helper.get_col(position)]

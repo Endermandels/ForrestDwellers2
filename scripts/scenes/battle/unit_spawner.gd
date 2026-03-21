@@ -1,19 +1,41 @@
 extends Node
 class_name UnitSpawner
 
-@export var enemy_units: Array[UnitResource] = []
+@export var encounter: Encounter
 
-# TODO: Randomize enemy units
+## Return an array of enemy units from the predetermined [encounter]
+func _get_enemy_units() -> Array[UnitRuntime]:
+	var enemy_units: Array[UnitRuntime] = []
+	var col = 0
 
+	for res: UnitResource in encounter.backline_units:
+		var run = UnitRuntime.new(res)
+
+		run.position = Helper.get_pos(Constants.BF_ENEMY_BACKLINE_ROW, col)
+		enemy_units.append(run)
+		col += 1
+	
+	col = 0
+
+	for res: UnitResource in encounter.frontline_units:
+		var run = UnitRuntime.new(res)
+
+		run.position = Helper.get_pos(Constants.BF_ENEMY_FRONTLINE_ROW, col)
+		enemy_units.append(run)
+		col += 1
+
+	return enemy_units
+
+## Get all units to spawn onto the battlefield
 func get_units_to_spawn() -> Array[UnitRuntime]:
+	var enemy_units = _get_enemy_units()
 	var res: Array[UnitRuntime] = []
 
 	for u: UnitRuntime in GameState.player_units:
 		res.append(u)
 		add_child(u)
-	for u: UnitResource in enemy_units:
-		var runtime = UnitRuntime.new(u)
-		res.append(runtime)
-		add_child(runtime)
+	for u: UnitRuntime in enemy_units:
+		res.append(u)
+		add_child(u)
 	
 	return res

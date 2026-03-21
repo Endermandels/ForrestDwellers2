@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=4 format=3 uid="uid://dkrn8exxynce6"]
+
+[ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_djpix"]
+[ext_resource type="Resource" uid="uid://ctksvdktlu65h" path="res://resources/units/snake.tres" id="2_5868i"]
+[ext_resource type="Script" uid="uid://dyxplp8h42jir" path="res://scripts/resources/encounter_resource.gd" id="2_wt32t"]
+
+[resource]
+script = ExtResource("2_wt32t")
+backline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), ExtResource("2_5868i"), ExtResource("2_5868i")])
+frontline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), ExtResource("2_5868i"), ExtResource("2_5868i")])
+metadata/_custom_type_script = "uid://dyxplp8h42jir"
