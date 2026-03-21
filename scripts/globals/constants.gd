@@ -21,3 +21,8 @@ enum TargetRule {
 	ALL_ALLIES, ## All allied units
 	ALL, ## All units
 }
+
+## Nunber of rows in the battlefield
+const BF_ROWS = 4
+## Number of columns in the battlefield
+const BF_COLS = 3

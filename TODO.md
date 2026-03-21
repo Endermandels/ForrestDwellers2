@@ -3,11 +3,11 @@ x Develop Game Description and Plan
 x Design project architecture
 
 # March
-- Design project architecture
+x Design project architecture
 - Develop Battle
 
 # April
-- Design project architecture
+x Design project architecture
 - Develop Battle
 
 Limit Battle development to the core gameplay aspects before iterating and creating multiple features.

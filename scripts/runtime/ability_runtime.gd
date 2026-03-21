@@ -21,7 +21,7 @@ func _to_string() -> String:
 
 func apply(battlefield: Array[UnitRuntime]) -> void:
 	for e in effects:
-		var targets = BattlefieldHandler.get_targets(e.target_rule, source_unit, battlefield)
+		var targets = Helper.get_targets(source_unit, e.target_rule, battlefield)
 
 		for u in targets:
 			e.apply(source_unit, u)

@@ -42,7 +42,7 @@ func enter(data: BattleStateData) -> void:
 	Console.print_line("~~~ [%s] Attack ~~~" % cur_unit)
 	if data.defenders_queue.size() == 0:
 		# Initialize defenders_queue
-		data.defenders_queue = BattlefieldHandler.get_targets(cur_unit.attack_target_rule, cur_unit, data.battlefield)
+		data.defenders_queue = Helper.get_targets(cur_unit, cur_unit.attack_target_rule, data.battlefield)
 
 func exit(data: BattleStateData) -> void:
 	# If there are more defenders left, Ability Resolution State should return to Attack State

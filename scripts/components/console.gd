@@ -5,6 +5,7 @@ extends Control
 @export var history_limit: int = 100 ## Number of labels before start to delete new labels
 @export var default_text_color: Color = Color.DIM_GRAY ## Default color of print_line text
 @export var default_text_submit_color: Color = Color.WHITE ## Default color of submitted text
+@export var hide_on_ready: bool = true ## Whether to hide the Console on startup
 @export_group("Nodes")
 @export var scroll_box: ScrollContainer
 @export var chat_box: VBoxContainer
@@ -13,7 +14,8 @@ extends Control
 var command_received: String = ""
 
 func _ready() -> void:
-	hide()
+	if hide_on_ready:
+		hide()
 	line_edit.text_submitted.connect(_on_line_edit_text_submitted)
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
