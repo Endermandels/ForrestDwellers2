@@ -8,7 +8,7 @@ func step(data: BattleStateData) -> State:
 	var state: State = turn_start_state
 
 	# Check player HP
-	if Helper.stat_is_depleted(GameState.player.hp):
+	if GameState.player.is_dead:
 		state = battle_end_state
 		data.player_won = false
 	else:
@@ -16,7 +16,7 @@ func step(data: BattleStateData) -> State:
 
 		# Check all enemies HP
 		for u: UnitRuntime in data.units_queue:
-			if u.is_enemy and not Helper.stat_is_depleted(u.hp):
+			if u.is_enemy and not u.is_dead:
 				no_enemies_left = false
 				break
 

@@ -10,6 +10,8 @@ var position: int: ## The battle field index this unit occupies
 		position = val
 		is_backline = Helper.is_backline_row(Helper.get_row(val)) # Set the is_backline flag automatically
 var is_backline: bool ## Whether this unit is currently in the backlines
+var blocks_backline: bool ## Whether this unit blocks backline units from attacking
+var is_dead: bool ## Whether this unit is dead
 
 var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
 var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
@@ -22,7 +24,12 @@ var base_atk: int
 var base_arm: int
 var base_spd: int
 var base_mp: int
-var hp: int
+var hp: int:
+	set(val):
+		hp = val
+		if hp <= 0:
+			is_dead = true
+			blocks_backline = false
 var atk: int
 var arm: int
 var spd: int
@@ -44,6 +51,7 @@ func _init(res: UnitResource) -> void:
 	spd = base_spd
 	mp = base_mp
 
+	blocks_backline = res.blocks_backline
 	attack_target_rule = res.attack_target_rule
 	position = 0
 
@@ -61,4 +69,4 @@ func _init(res: UnitResource) -> void:
 			abilities_dict[Constants.Trigger.keys()[t]].append(runtime)
 
 func _to_string() -> String:
-	return "%s @ (R%d, C%d)" % [name_id, Helper.get_row(position), Helper.get_col(position)]
+	return "%s @ (R%d, C%d)" % [name_id + (" Corpse" if is_dead else ""), Helper.get_row(position), Helper.get_col(position)]

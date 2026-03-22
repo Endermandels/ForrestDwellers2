@@ -5,10 +5,6 @@ extends Node
 func clamp_zero(num: int) -> int:
 	return max(num, 0)
 
-## Returns [num] <= 0
-func stat_is_depleted(num: int) -> bool:
-	return num <= 0
-
 ## Get position equivalent of row, col
 func get_pos(row: int, col: int, columns: int = Constants.BF_COLS) -> int:
 	return row * columns + col
@@ -23,7 +19,7 @@ func get_col(pos: int, columns: int = Constants.BF_COLS) -> int:
 
 ## Returns whether the [row] is a backline row
 func is_backline_row(row: int) -> bool:
-	return row == 0 or row == 3
+	return (row == Constants.BF_PLAYER_BACKLINE_ROW) or (row == Constants.BF_ENEMY_BACKLINE_ROW)
 
 ## Get targets using [source] [target_rule] on the battlefield [bf]
 func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Array[UnitRuntime]) -> Array[UnitRuntime]:
@@ -44,7 +40,7 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 		# Backline units must have the space in front of them clear of allies in order to target enemies
 		if source.is_backline:
 			var ally_in_front: UnitRuntime = bf[Helper.get_pos(src_row + dir, src_col)]
-			blocked_by_ally = ally_in_front != null
+			blocked_by_ally = (ally_in_front != null) and ally_in_front.blocks_backline
 
 		# Identify valid targets
 		if not blocked_by_ally:
@@ -63,11 +59,11 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 					
 					
 					if target and target != source:
-						if source.is_backline and source.is_enemy == target.is_enemy:
+						if source.is_backline and source.is_enemy == target.is_enemy and target.blocks_backline:
 							# Applies when the source is a backline unit
 							# Any allied units in this column that aren't the source block the sources way of attack
 							break # Continue to the next column
-						elif source.is_enemy != target.is_enemy:
+						elif source.is_enemy != target.is_enemy and not target.is_dead:
 							if is_direct:
 								valid_direct_targets.append(target)
 							else:
