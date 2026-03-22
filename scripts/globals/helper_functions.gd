@@ -52,7 +52,7 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 					if row < 0 or row >= rows:
 						break # Continue to the next column
 
-					Console.print_line("Looking at R %d C %d" % [row, col])
+					# Console.print_line("Looking at R %d C %d" % [row, col])
 					var pos: int = Helper.get_pos(row, col)
 					var target: UnitRuntime = bf[pos]
 					var is_direct: bool = col == src_col

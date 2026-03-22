@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=2 format=3 uid="uid://cdoixu8ii3eji"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=3 format=3 uid="uid://cdoixu8ii3eji"]
 
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_7lw6w"]
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_cmmx1"]
 
 [resource]
 script = ExtResource("1_7lw6w")
 name_id = "Wolf"
-base_hp = 3
 base_atk = 2
 base_spd = 2
 base_mp = 1

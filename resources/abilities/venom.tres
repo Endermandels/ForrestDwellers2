@@ -7,7 +7,8 @@
 [sub_resource type="Resource" id="Resource_7afc8"]
 script = ExtResource("2_dbtjg")
 is_pure = true
-target_rule = 1
+name_id = "DMG"
+target_rule = 2
 metadata/_custom_type_script = "uid://d4i404qjxo07l"
 
 [resource]

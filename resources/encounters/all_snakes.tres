@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource("2_wt32t")
-backline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), ExtResource("2_5868i"), ExtResource("2_5868i")])
-frontline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), ExtResource("2_5868i"), ExtResource("2_5868i")])
+backline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), null, ExtResource("2_5868i")])
+frontline_units = Array[ExtResource("1_djpix")]([ExtResource("2_5868i"), null, ExtResource("2_5868i")])
 metadata/_custom_type_script = "uid://dyxplp8h42jir"

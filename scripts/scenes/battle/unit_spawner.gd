@@ -9,19 +9,21 @@ func _get_enemy_units() -> Array[UnitRuntime]:
 	var col = 0
 
 	for res: UnitResource in encounter.backline_units:
-		var run = UnitRuntime.new(res)
+		if res != null: # Empty space
+			var run = UnitRuntime.new(res)
 
-		run.position = Helper.get_pos(Constants.BF_ENEMY_BACKLINE_ROW, col)
-		enemy_units.append(run)
+			run.position = Helper.get_pos(Constants.BF_ENEMY_BACKLINE_ROW, col)
+			enemy_units.append(run)
 		col += 1
 	
 	col = 0
 
 	for res: UnitResource in encounter.frontline_units:
-		var run = UnitRuntime.new(res)
+		if res != null: # Empty space
+			var run = UnitRuntime.new(res)
 
-		run.position = Helper.get_pos(Constants.BF_ENEMY_FRONTLINE_ROW, col)
-		enemy_units.append(run)
+			run.position = Helper.get_pos(Constants.BF_ENEMY_FRONTLINE_ROW, col)
+			enemy_units.append(run)
 		col += 1
 
 	return enemy_units
