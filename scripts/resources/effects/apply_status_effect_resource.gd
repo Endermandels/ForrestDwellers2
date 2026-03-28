@@ -1,0 +1,4 @@
+extends EffectResource
+class_name ApplyStatusEffectResource
+
+@export var status_effect: StatusEffectResource

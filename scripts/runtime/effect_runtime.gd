@@ -2,7 +2,6 @@ extends RefCounted
 class_name EffectRuntime
 
 var name_id: String
-var value: int
 var target_rule: Constants.TargetRule
 
 # TODO: Expand as necessary
@@ -10,12 +9,13 @@ var target_rule: Constants.TargetRule
 static func from_resource(res: EffectResource) -> EffectRuntime:
 	if res is DMGEffectResource:
 		return DMGEffectRuntime.new(res)
+	if res is ApplyStatusEffectResource:
+		return ApplyStatusEffectRuntime.new(res)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return EffectRuntime.new(res)
 
 func _init(res: EffectResource) -> void:
 	name_id = res.name_id
-	value = res.value
 	target_rule = res.target_rule
 	init(res)
 

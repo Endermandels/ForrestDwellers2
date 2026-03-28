@@ -10,29 +10,33 @@ func step(data: BattleStateData) -> State:
 	var attacker: UnitRuntime = data.units_queue[0]
 	var abilities_queue: Array[AbilityRuntime] = data.abilities_queue
 
-	var defender: UnitRuntime = data.defenders_queue.pop_front()
+	# It is possible to get here and the attacker is dead, so just move along to the next state
+	if not attacker.is_dead:
+		var defender: UnitRuntime = data.defenders_queue.pop_front()
 
-	if defender:
-		var dmg_res = DMGEffectResource.new()
-		var dmg_run = DMGEffectRuntime.new(dmg_res)
+		if defender:
+			var dmg_res: DMGEffectResource = DMGEffectResource.new()
+			var dmg_run: DMGEffectRuntime = DMGEffectRuntime.new(dmg_res)
 
-		# Track engaged opponents
-		attacker.engaged_opponent = defender
-		defender.engaged_opponent = attacker
+			# Track engaged opponents
+			attacker.engaged_opponent = defender
+			defender.engaged_opponent = attacker
 
-		# Apply attacker's damage to defender
-		dmg_run.value = attacker.atk
-		dmg_run.apply(attacker, defender)
+			# Apply attacker's damage to defender
+			dmg_run.dmg = attacker.atk
+			dmg_run.apply(attacker, defender)
 
-		# Load abilities queue
-		for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
-			abilities_queue.append(a)
+			# Load abilities queue
+			for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
+				abilities_queue.append(a)
 
-		# Transition to Ability Resolution State if there are abilities to resolve
-		if abilities_queue.size() > 0:
-			state = ability_resolution_state
+			# Transition to Ability Resolution State if there are abilities to resolve
+			if abilities_queue.size() > 0:
+				state = ability_resolution_state
+		else:
+			Console.print_line("* No valid targets left")
 	else:
-		Console.print_line("* No valid targets left")
+		Console.print_line("* [%s] is dead" % attacker)
 
 	return state
 

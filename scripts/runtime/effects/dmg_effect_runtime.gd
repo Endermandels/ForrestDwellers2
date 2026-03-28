@@ -1,24 +1,26 @@
 extends EffectRuntime
 class_name DMGEffectRuntime
 
+var dmg: int ## How much DMG to apply
 var is_pure: bool ## Whether it bypasses ARM
 
 func init(res: DMGEffectResource) -> void:
 	is_pure = res.is_pure
+	dmg = res.dmg
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:
-	var dmg = value
+	var dmg_mod: int = dmg
 
 	if target.is_dead:
 		Console.print_line("* [%s] is already dead" % target)
 		return
 	
 	if not is_pure:
-		dmg = Helper.clamp_zero(dmg - target.arm)
-		target.arm = Helper.clamp_zero(target.arm - value)
+		dmg_mod = Helper.clamp_zero(dmg_mod - target.arm)
+		target.arm = Helper.clamp_zero(target.arm - dmg)
 
-	Console.print_line("* [%s] took [%d] DMG" % [target, dmg])
-	target.hp = Helper.clamp_zero(target.hp - dmg)
+	Console.print_line("* [%s] took [%d] DMG" % [target, dmg_mod])
+	target.hp = Helper.clamp_zero(target.hp - dmg_mod)
 	
 	if target.is_dead:
 		Console.print_line("* [%s] is dead" % target)

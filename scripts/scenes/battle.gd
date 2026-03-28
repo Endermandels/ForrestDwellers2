@@ -19,13 +19,17 @@ const COMMANDS = {
 func print_unit_stats(row: int, col: int) -> void:
 	var unit: UnitRuntime = battlefield_handler.battlefield[Helper.get_pos(row, col)]
 	if unit:
-		Console.print_line("=> %s" % unit.name_id)
+		Console.print_line("=> %s" % unit)
 		Console.print_line("=> HP:    %d/%d"  % [unit.hp, unit.base_hp])
 		Console.print_line("=> ATK:   %d/%d" % [unit.atk, unit.base_atk])
 		Console.print_line("=> ARM:   %d/%d" % [unit.arm, unit.base_arm])
 		Console.print_line("=> SPD:   %d/%d" % [unit.spd, unit.base_spd])
 		Console.print_line("=> MP:    %d/%d"  % [unit.mp, unit.base_mp])
 		Console.print_line("=> ITM:   %d/%d" % [0, unit.itm])
+		if unit.status_effects.size() > 0:
+			Console.print_line("=> STATUS EFFECTS:")
+			for se: StatusEffectRuntime in unit.status_effects:
+				Console.print_line("=> [%s] [%d]" % [se, se.stacks])
 
 func _ready() -> void:
 	auto_step_timer.timeout.connect(battle_handler.step)
