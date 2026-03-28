@@ -1,17 +1,28 @@
 extends StatusEffectRuntime
 class_name StatusEffectPoisonRuntime
 
+var dmg_run: DMGEffectRuntime
+
 func init(res: StatusEffectPoisonResource) -> void:
-	pass
+	var dmg_res: DMGEffectResource = DMGEffectResource.new()
+	dmg_res.is_pure = true
+	dmg_res.dmg = 1
+	dmg_run = DMGEffectRuntime.new(dmg_res)
 
 func apply(target: UnitRuntime) -> void:
 	if target.is_dead:
 		Console.print_line("* [%s] is dead and cannot apply [%s]" % [target, self])
 		return
 	
+	# Increase DMG until it reaches stacks
+	if dmg_run.dmg < stacks:
+		dmg_run.dmg += 1
+
+	# Make sure DMG is capped at stacks	
+	if dmg_run.dmg > stacks:
+		dmg_run.dmg = stacks
+
 	Console.print_line("* [%s] was afflicted by [%s]" % [target, self])
-	for e: EffectRuntime in effects:
-		e.apply(source, target)
-	
-	stacks -= 1 # TODO: Change this
+	dmg_run.apply(source, target)
+
 	Console.print_line("* [%s] stacks remaining: [%s]" % [self, stacks])

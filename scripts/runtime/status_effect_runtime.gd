@@ -5,7 +5,6 @@ var name_id: String
 var stacks: int
 var target_rule: Constants.TargetRule
 var triggers: Array[Constants.Trigger]
-var effects: Array[EffectRuntime]
 
 var source: UnitRuntime ## Source of status effect
 
@@ -23,10 +22,6 @@ func _init(res: StatusEffectResource, _source: UnitRuntime = null) -> void:
 	target_rule = res.target_rule
 	triggers = res.triggers
 	source = _source
-	
-	for e in res.effects:
-		var e_run: EffectRuntime = EffectRuntime.from_resource(e)
-		effects.append(e_run)
 
 	init(res)
 
