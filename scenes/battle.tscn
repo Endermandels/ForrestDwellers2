@@ -13,8 +13,9 @@
 [ext_resource type="Script" uid="uid://bfn3vc62w6ol0" path="res://scripts/scenes/battle/states/state_ability_resolution.gd" id="12_03edq"]
 [ext_resource type="Script" uid="uid://b8os75onks5wp" path="res://scripts/scenes/battle/battlefield_handler.gd" id="13_22uqi"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("battle_handler", "battlefield_handler")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("auto_step_timer", "battle_handler", "battlefield_handler")]
 script = ExtResource("1_p1qf1")
+auto_step_timer = NodePath("BattleHandler/AutoStepTimer")
 battle_handler = NodePath("BattleHandler")
 battlefield_handler = NodePath("BattleHandler/BattlefieldHandler")
 
@@ -59,3 +60,5 @@ script = ExtResource("12_03edq")
 
 [node name="BattlefieldHandler" type="Node" parent="BattleHandler"]
 script = ExtResource("13_22uqi")
+
+[node name="AutoStepTimer" type="Timer" parent="BattleHandler"]

@@ -67,6 +67,15 @@ Explicit user requests:
 - When the user corrects you on something you stated from memory, you MUST update or remove the incorrect entry. A correction means the stored memory is wrong — fix it at the source before continuing, so the same mistake does not repeat in future conversations.
 - Since this memory is project-scope and shared with your team via version control, tailor your memories to this project
 
+## Session Start Checklist
+
+At the start of every new conversation (i.e., when the user greets you or asks what's on the docket), you MUST:
+1. Read `MEMORY.md` from your agent memory directory.
+2. If there are any entries under `## Pending Reminders`, surface ALL of them to the user immediately — before anything else.
+3. After surfacing a reminder, remove it from `MEMORY.md` so it doesn't repeat next session.
+
+Never skip this step. The user relies on these reminders carrying over between sessions.
+
 ## MEMORY.md
 
 Your MEMORY.md is currently empty. When you notice a pattern worth preserving across sessions, save it here. Anything in MEMORY.md will be included in your system prompt next time.
