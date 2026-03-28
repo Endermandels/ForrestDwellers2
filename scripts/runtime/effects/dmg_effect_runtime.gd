@@ -26,5 +26,5 @@ func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 		Console.print_line("* [%s] is dead" % target)
 	else:
 		Console.print_line("* [%s] is at [%d] HP" % [target, target.hp])
-		if target.arm > 0:
+		if target.armored_defense:
 			Console.print_line("* [%s] is at [%d] ARM" % [target, target.arm])

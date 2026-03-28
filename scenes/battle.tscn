@@ -68,3 +68,4 @@ script = ExtResource("12_22uqi")
 script = ExtResource("13_22uqi")
 
 [node name="AutoStepTimer" type="Timer" parent="BattleHandler"]
+wait_time = 0.8

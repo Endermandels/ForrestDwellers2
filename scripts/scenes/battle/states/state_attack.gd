@@ -22,6 +22,9 @@ func step(data: BattleStateData) -> State:
 			attacker.engaged_opponent = defender
 			defender.engaged_opponent = attacker
 
+			# Set armored defense if applicable
+			defender.armored_defense = defender.arm > 0
+
 			# Apply attacker's damage to defender
 			dmg_run.dmg = attacker.atk
 			dmg_run.apply(attacker, defender)

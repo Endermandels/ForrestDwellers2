@@ -12,6 +12,7 @@ var position: int: ## The battle field index this unit occupies
 var is_backline: bool ## Whether this unit is currently in the backlines
 var blocks_backline: bool ## Whether this unit blocks backline units from attacking
 var is_dead: bool ## Whether this unit is dead
+var armored_defense: bool ## Whether this unit defended with ARM > 0
 
 var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
 var abilities: Array[AbilityRuntime] ## All abilities associated with this unit

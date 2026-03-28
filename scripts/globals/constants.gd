@@ -22,6 +22,37 @@ enum TargetRule {
 	ALL, ## All units
 }
 
+enum UnitStat {
+	BASE_HP,
+	BASE_ATK,
+	BASE_ARM,
+	BASE_SPD,
+	BASE_MP,
+	HP,
+	ATK,
+	ARM,
+	SPD,
+	MP,
+	ITM,
+
+	IS_DEAD,
+	IS_BACKLINE,
+	BLOCKS_BACKLINE,
+	ARMORED_DEFENSE,
+}
+
+enum AbilityConditionOperation {
+	EQUALS,
+	GREATER,
+	LESSER,
+}
+
+enum AbiltiyConditionType {
+	BOOLEAN,
+	SCALAR,
+	UNITS,
+}
+
 ## Nunber of rows in the battlefield
 const BF_ROWS = 4
 ## Number of columns in the battlefield
