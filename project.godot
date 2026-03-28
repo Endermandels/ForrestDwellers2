@@ -29,6 +29,10 @@ gdscript/warnings/integer_division=0
 gdscript/warnings/narrowing_conversion=0
 gdscript/warnings/native_method_override=0
 
+[gui]
+
+theme/custom_font="uid://b8vmmaso7gt3x"
+
 [input]
 
 select={
