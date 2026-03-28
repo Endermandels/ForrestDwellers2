@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_i6usq"]
 script = ExtResource("3_dbtjg")
 name_id = "Poison"
+triggers = Array[int]([2])
 metadata/_custom_type_script = "uid://btwrh7qk7mpr5"
 
 [sub_resource type="Resource" id="Resource_xo1uk"]

@@ -9,3 +9,4 @@ var battlefield: Array[UnitRuntime] = []
 
 var next_state: State = null
 var player_won: bool = false
+var activate_trigger: bool = true ## Used to activate trigger abilities and status effects on entering a state

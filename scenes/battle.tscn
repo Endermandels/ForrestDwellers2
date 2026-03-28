@@ -49,9 +49,10 @@ script = ExtResource("9_66ngm")
 turn_end_state = NodePath("../StateTurnEnd")
 ability_resolution_state = NodePath("../StateAbilityResolution")
 
-[node name="StateTurnEnd" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "battle_end_state")]
+[node name="StateTurnEnd" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "status_effect_resolution_state", "battle_end_state")]
 script = ExtResource("10_03edq")
 turn_start_state = NodePath("../StateTurnStart")
+status_effect_resolution_state = NodePath("../StateStatusEffectResolution")
 battle_end_state = NodePath("../StateBattleEnd")
 
 [node name="StateBattleEnd" type="Node" parent="BattleHandler/BattleStateMachine"]
