@@ -1,4 +1,4 @@
-extends Node # TODO: Extend Saveable
+extends RefCounted
 class_name UnitRuntime
 
 # Runtime Data
@@ -15,6 +15,7 @@ var is_dead: bool ## Whether this unit is dead
 
 var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
 var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
+var status_effects: Array[EffectRuntime] ## Active status effects
 var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
 
 

@@ -25,10 +25,6 @@ func add_unit(unit: UnitRuntime) -> void:
 	# Add unit to queue
 	data.units_queue.append(unit)
 
-	# Add unit's abilities as children of that unit
-	for a in unit.abilities:
-		unit.add_child(a)
-
 	Console.print_line("* Added unit: [%s]" % unit)
 
 ## Handle the next step in the battle

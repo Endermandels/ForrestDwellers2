@@ -1,4 +1,4 @@
-extends Node # TODO: Extend Saveable
+extends RefCounted
 class_name AbilityRuntime
 
 var name_id: String

@@ -35,9 +35,7 @@ func get_units_to_spawn() -> Array[UnitRuntime]:
 
 	for u: UnitRuntime in GameState.player_units:
 		res.append(u)
-		add_child(u)
 	for u: UnitRuntime in enemy_units:
 		res.append(u)
-		add_child(u)
 	
 	return res

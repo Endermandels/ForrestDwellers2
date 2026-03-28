@@ -6,7 +6,7 @@ class_name UnitResource
 @export var blocks_backline: bool = true ## Whether this unit blocks backline units from attacking
 @export var attack_target_rule: Constants.TargetRule = Constants.TargetRule.OPPONENT_ACROSS ## TargetRule for choosing defenders of this unit's attack
 @export_group("Base Stats")
-@export_range(0, 20) var base_hp: int = 1
+@export_range(0, 30) var base_hp: int = 1
 @export_range(0, 10) var base_atk: int = 0
 @export_range(0, 10) var base_arm: int = 0
 @export_range(0, 10) var base_spd: int = 0

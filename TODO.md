@@ -34,4 +34,4 @@ BATTLE MUST BE FUN BEFORE PUTTING IN THE REST OF THE GAME!
 - Market Game
 
 # CURRENT TASK
-- Multiple units
+- Add more Abilities (and animals)
