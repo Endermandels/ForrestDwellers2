@@ -12,32 +12,43 @@ func step(data: BattleStateData) -> State:
 
 	# It is possible to get here and the attacker is dead, so just move along to the next state
 	if not attacker.is_dead:
-		var defender: UnitRuntime = data.defenders_queue.pop_front()
+		if attacker == GameState.player and data.defenders_queue.size() == 0 and data.player_valid_targets.size() > 0:
+			# Allow player to choose defender
+			if data.player_confirm_selection:
+				data.player_confirm_selection = false
+				data.defenders_queue.append(data.player_valid_targets[data.player_selected_target])
+				data.player_valid_targets = []
+			else:
+				state = null
 
-		if defender:
-			var dmg_res: DMGEffectResource = DMGEffectResource.new()
-			var dmg_run: DMGEffectRuntime = DMGEffectRuntime.new(dmg_res)
+		# Only null when the player hasn't confirmed a defender on the player's turn
+		if state != null:
+			var defender: UnitRuntime = data.defenders_queue.pop_front()
 
-			# Track engaged opponents
-			attacker.engaged_opponent = defender
-			defender.engaged_opponent = attacker
+			if defender:
+				var dmg_res: DMGEffectResource = DMGEffectResource.new()
+				var dmg_run: DMGEffectRuntime = DMGEffectRuntime.new(dmg_res)
 
-			# Set armored defense if applicable
-			defender.armored_defense = defender.arm > 0
+				# Track engaged opponents
+				attacker.engaged_opponent = defender
+				defender.engaged_opponent = attacker
 
-			# Apply attacker's damage to defender
-			dmg_run.dmg = attacker.atk
-			dmg_run.apply(attacker, defender)
+				# Set armored defense if applicable
+				defender.armored_defense = defender.arm > 0
 
-			# Load abilities queue
-			for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
-				abilities_queue.append(a)
+				# Apply attacker's damage to defender
+				dmg_run.dmg = attacker.atk
+				dmg_run.apply(attacker, defender)
 
-			# Transition to Ability Resolution State if there are abilities to resolve
-			if abilities_queue.size() > 0:
-				state = ability_resolution_state
-		else:
-			Console.print_line("* No valid targets left")
+				# Load abilities queue
+				for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
+					abilities_queue.append(a)
+
+				# Transition to Ability Resolution State if there are abilities to resolve
+				if abilities_queue.size() > 0:
+					state = ability_resolution_state
+			else:
+				Console.print_line("* No valid targets left")
 	else:
 		Console.print_line("* [%s] is dead" % attacker)
 
@@ -49,7 +60,13 @@ func enter(data: BattleStateData) -> void:
 	Console.print_line("~~~ [%s] Attack ~~~" % cur_unit)
 	if data.defenders_queue.size() == 0:
 		# Initialize defenders_queue
-		data.defenders_queue = Helper.get_targets(cur_unit, cur_unit.attack_target_rule, data.battlefield)
+		if cur_unit != GameState.player:
+			data.defenders_queue = Helper.get_targets(cur_unit, cur_unit.attack_target_rule, data.battlefield)
+		else:
+			data.player_valid_targets = Helper.get_targets(cur_unit, cur_unit.attack_target_rule, data.battlefield)
+			if data.player_valid_targets.size() > 0:
+				data.player_selected_target = 0
+				Console.print_line("> Selected [%s] (/c to confirm, /l to move selection left, /r to move selection right)" % data.player_valid_targets[data.player_selected_target])
 
 func exit(data: BattleStateData) -> void:
 	# If there are more defenders left, Ability Resolution State should return to Attack State

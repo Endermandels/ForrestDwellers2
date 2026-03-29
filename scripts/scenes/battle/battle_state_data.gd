@@ -10,3 +10,7 @@ var battlefield: Array[UnitRuntime] = []
 var next_state: State = null
 var player_won: bool = false
 var activate_trigger: bool = true ## Used to activate trigger abilities and status effects on entering a state
+
+var player_confirm_selection: bool = false ## Set to true to indicate player has confirmed selection
+var player_selected_target: int = 0 ## Which valid target the player is currently choosing to attack
+var player_valid_targets: Array[UnitRuntime] = [] ## The valid targets available for the player to attack

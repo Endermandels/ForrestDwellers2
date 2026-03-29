@@ -7,6 +7,7 @@
 script = ExtResource("1_hm0gi")
 name_id = "Player"
 is_enemy = false
+attack_target_rule = 3
 base_hp = 20
 base_atk = 2
 base_arm = 1

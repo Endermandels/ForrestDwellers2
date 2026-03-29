@@ -52,7 +52,6 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 					if row < 0 or row >= rows:
 						break # Continue to the next column
 
-					# Console.print_line("Looking at R %d C %d" % [row, col])
 					var pos: int = Helper.get_pos(row, col)
 					var target: UnitRuntime = bf[pos]
 					var is_direct: bool = col == src_col
@@ -61,7 +60,7 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 					if target and target != source:
 						if source.is_backline and source.is_enemy == target.is_enemy and target.blocks_backline:
 							# Applies when the source is a backline unit
-							# Any allied units in this column that aren't the source block the sources way of attack
+							# Any allied units in this column that aren't the source block the source's way of attack
 							break # Continue to the next column
 						elif source.is_enemy != target.is_enemy and not target.is_dead:
 							if is_direct:
@@ -75,6 +74,42 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 			res.append(valid_direct_targets.pick_random())
 		elif valid_flank_targets.size() > 0:
 			res.append(valid_flank_targets.pick_random())
+	elif target_rule == Constants.TargetRule.ALL_OPPONENTS_ACROSS:
+		var src_row: int = get_row(source.position, cols)
+		var src_col: int = get_col(source.position, cols)
+		var dir: int = 1 if source.is_enemy else -1 ## Which direction to check for enemies from
+		var blocked_by_ally: bool = false
+		var valid_targets: Array[UnitRuntime] = []
+
+		# Backline units must have the space in front of them clear of allies in order to target enemies
+		if source.is_backline:
+			var ally_in_front: UnitRuntime = bf[Helper.get_pos(src_row + dir, src_col)]
+			blocked_by_ally = (ally_in_front != null) and ally_in_front.blocks_backline
+
+		# Identify valid targets
+		if not blocked_by_ally:
+			for col in range(cols):
+				for r in range(rows):
+					var row: int = src_row + r * dir # Traverse up or down depending on whether the source is an ally or an enemy
+					
+					# Check for out of bounds row
+					if row < 0 or row >= rows:
+						break # Continue to the next column
+
+					var pos: int = Helper.get_pos(row, col)
+					var target: UnitRuntime = bf[pos]
+					
+					if target and target != source:
+						if source.is_backline and source.is_enemy == target.is_enemy and target.blocks_backline:
+							# Applies when the source is a backline unit
+							# Any allied units in this column that aren't the source block the source's way of attack
+							break # Continue to the next column
+						elif source.is_enemy != target.is_enemy and not target.is_dead:
+							valid_targets.append(target)
+							break # Continue to the next column
+
+		# Add valid targets to results
+		res = valid_targets
 	else:
 		push_error("Unimplemented Target Rule: " + Constants.TargetRule.keys()[target_rule])
 	return res

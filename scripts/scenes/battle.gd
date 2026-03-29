@@ -13,7 +13,10 @@ const COMMANDS = {
 	"battlefield": ["battlefield", "bf"],	# Print the current state of the battlefield
 	"auto": ["auto", "a"],					# Toggle auto step in the Console
 	"speed": ["speed", "spd"],				# Change the auto step period (param1 = period)
-	"stats": ["stats", "st"]				# Check the stats of a unit (param1 = row, param2 = col)
+	"stats": ["stats", "st"],				# Check the stats of a unit (param1 = row, param2 = col)
+	"left": ["left", "l"],					# Move the player's selection of defender left
+	"right": ["right", "r"],					# Move the player's selection of defender right
+	"confirm": ["confirm", "c"],			# Confirm the player's selection of defender
 }
 
 func print_unit_stats(row: int, col: int) -> void:
@@ -76,6 +79,12 @@ func _process(delta: float) -> void:
 			else:
 				push_warning("! Specify unit row and col")
 				Console.print_line("! Specify unit row and col", Color.RED)
+		elif command in COMMANDS.left:
+			battle_handler.player_move_selection(true)
+		elif command in COMMANDS.right:
+			battle_handler.player_move_selection(false)
+		elif command in COMMANDS.confirm:
+			battle_handler.player_confirm_selection()
 		else:
 			push_warning("! Invalid command: '%s'" % command)
 			Console.print_line("! Invalid command: '%s'" % command, Color.RED)
