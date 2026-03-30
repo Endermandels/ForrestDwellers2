@@ -33,7 +33,7 @@ func enter(data: BattleStateData) -> void:
 	if data.activate_trigger:
 		var cur_unit: UnitRuntime = data.units_queue[0]
 
-		Console.print_line("~~~ [%s] Turn Start ~~~" % cur_unit)
+		Console.print_line("# [%s] Turn Start #" % cur_unit, Color.GREEN)
 
 func exit(data: BattleStateData) -> void:
 	pass

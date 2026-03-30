@@ -27,7 +27,9 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 	var cols: int = Constants.BF_COLS
 	var rows: int = Constants.BF_ROWS
 
-	if target_rule == Constants.TargetRule.OPPONENT_ENGAGED:
+	if target_rule == Constants.TargetRule.SELF:
+		res.append(source)
+	elif target_rule == Constants.TargetRule.OPPONENT_ENGAGED:
 		res.append(source.engaged_opponent)
 	elif target_rule == Constants.TargetRule.OPPONENT_ACROSS:
 		var src_row: int = get_row(source.position, cols)

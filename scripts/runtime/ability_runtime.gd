@@ -42,4 +42,4 @@ func apply(battlefield: Array[UnitRuntime]) -> void:
 			for u in targets:
 				e.apply(source_unit, u)
 	else:
-		Console.print_line("TODO: DELETE * [%s] could not use [%s]" % [source_unit, self])
+		Console.print_line("* [%s] could not use [%s]" % [source_unit, self])

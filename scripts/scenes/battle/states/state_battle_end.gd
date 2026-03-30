@@ -5,7 +5,7 @@ func step(data: BattleStateData) -> State:
 	return null
 
 func enter(data: BattleStateData) -> void:
-	Console.print_line("~~~ Battle End ~~~")
+	Console.print_line("# Battle End #", Color.GREEN)
 	if data.player_won:
 		Console.print_line("* Player Won!")
 	else:

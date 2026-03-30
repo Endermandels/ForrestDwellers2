@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=9 format=3 uid="uid://8w2sbqtlu371"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=12 format=3 uid="uid://8w2sbqtlu371"]
 
 [ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_7afc8"]
 [ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="1_mlxw7"]
 [ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="2_dbtjg"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="2_mnxqt"]
 [ext_resource type="Script" uid="uid://btwrh7qk7mpr5" path="res://scripts/resources/status_effects/poison_resource.gd" id="3_dbtjg"]
+[ext_resource type="Script" uid="uid://chpvbwes60tv6" path="res://scripts/resources/effects/drn_effect_resource.gd" id="3_i6usq"]
 
 [sub_resource type="Resource" id="Resource_7afc8"]
 script = ExtResource("1_7afc8")
@@ -15,6 +16,17 @@ Scalar = null
 scalar = 6
 Units = null
 metadata/_custom_type_script = "uid://d084ilajke2li"
+
+[sub_resource type="Resource" id="Resource_ejn0s"]
+script = ExtResource("1_7afc8")
+Boolean = null
+Units = null
+metadata/_custom_type_script = "uid://d084ilajke2li"
+
+[sub_resource type="Resource" id="Resource_geifv"]
+script = ExtResource("3_i6usq")
+name_id = "DRN"
+metadata/_custom_type_script = "uid://chpvbwes60tv6"
 
 [sub_resource type="Resource" id="Resource_i6usq"]
 script = ExtResource("3_dbtjg")
@@ -32,6 +44,6 @@ metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 script = ExtResource("2_mnxqt")
 name_id = "Venom"
 triggers = Array[int]([3])
-conditions = Array[ExtResource("1_7afc8")]([SubResource("Resource_7afc8")])
-effects = Array[ExtResource("1_mlxw7")]([SubResource("Resource_xo1uk")])
+conditions = Array[ExtResource("1_7afc8")]([SubResource("Resource_7afc8"), SubResource("Resource_ejn0s")])
+effects = Array[ExtResource("1_mlxw7")]([SubResource("Resource_geifv"), SubResource("Resource_xo1uk")])
 metadata/_custom_type_script = "uid://dpoiljl72xoph"

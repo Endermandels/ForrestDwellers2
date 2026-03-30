@@ -57,7 +57,7 @@ func step(data: BattleStateData) -> State:
 func enter(data: BattleStateData) -> void:
 	var cur_unit: UnitRuntime = data.units_queue[0]
 
-	Console.print_line("~~~ [%s] Attack ~~~" % cur_unit)
+	Console.print_line("# [%s] Attack #" % cur_unit, Color.GREEN)
 	if data.defenders_queue.size() == 0:
 		# Initialize defenders_queue
 		if cur_unit != GameState.player:

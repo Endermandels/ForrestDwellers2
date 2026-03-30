@@ -21,7 +21,7 @@ func step(data: BattleStateData) -> State:
 	return state
 
 func enter(data: BattleStateData) -> void:
-	Console.print_line("~~~ Status Effect Resolution ~~~")
+	Console.print_line("# Status Effect Resolution #", Color.GREEN)
 	next_state = data.next_state
 
 func exit(data: BattleStateData) -> void:

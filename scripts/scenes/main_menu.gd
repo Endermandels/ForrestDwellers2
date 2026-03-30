@@ -7,7 +7,7 @@ func _init() -> void:
 	GameState.init_new_game()
 
 func _ready() -> void:
-	Console.print_line("~~~ Main Menu ~~~")
+	Console.print_line("# Main Menu #", Color.GREEN)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("select"):
