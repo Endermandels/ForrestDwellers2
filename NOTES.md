@@ -68,6 +68,7 @@ The purpose of this file is to keep track of random ideas about the game.
 - DMG (reduce ARM if not PURE, then HP)
 - DRN (reduce MP)
 - SLW (reduce SPD)
+- QCK (increase SPD)
 - WEAK (reduce ATK)
 - STR (increase ATK)
 - HEAL (restore HP)

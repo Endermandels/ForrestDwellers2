@@ -19,7 +19,6 @@ var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
 var status_effects: Array[StatusEffectRuntime] ## Active status effects
 var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
 
-
 # Stats
 var base_hp: int
 var base_atk: int
@@ -38,6 +37,10 @@ var spd: int
 var mp: int
 var itm: int
 
+# Stats Modifiers (cleared at Turn End)
+var weak: int
+var strength: int
+
 func _init(res: UnitResource) -> void:
 	name_id = res.name_id
 	is_enemy = res.is_enemy
@@ -52,6 +55,9 @@ func _init(res: UnitResource) -> void:
 	arm = base_arm
 	spd = base_spd
 	mp = base_mp
+
+	weak = 0
+	strength = 0
 
 	blocks_backline = res.blocks_backline
 	attack_target_rule = res.attack_target_rule

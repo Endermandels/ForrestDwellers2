@@ -34,9 +34,10 @@ encounter = ExtResource("4_03edq")
 script = ExtResource("6_6vh42")
 cur_state = NodePath("StateBattleStart")
 
-[node name="StateBattleStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state")]
+[node name="StateBattleStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "ability_resolution_state")]
 script = ExtResource("7_4k1nj")
 turn_start_state = NodePath("../StateTurnStart")
+ability_resolution_state = NodePath("../StateAbilityResolution")
 
 [node name="StateTurnStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("attack_state", "status_effect_resolution_state", "turn_end_state")]
 script = ExtResource("8_f4pi3")

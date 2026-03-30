@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StatusEffectIntimidateResource" load_steps=2 format=3 uid="uid://nkqb0uo5wy0v"]
+
+[ext_resource type="Script" uid="uid://bs80346l0mclt" path="res://scripts/resources/status_effects/intimidate_resource.gd" id="1_ruc21"]
+
+[resource]
+script = ExtResource("1_ruc21")
+name_id = "Intimidate"
+metadata/_custom_type_script = "uid://bs80346l0mclt"

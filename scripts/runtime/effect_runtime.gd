@@ -13,6 +13,8 @@ static func from_resource(res: EffectResource) -> EffectRuntime:
 		return ApplyStatusEffectRuntime.new(res)
 	if res is DRNEffectResource:
 		return DRNEffectRuntime.new(res)
+	if res is WEAKEffectResource:
+		return WEAKEffectRuntime.new(res)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return EffectRuntime.new(res)
 

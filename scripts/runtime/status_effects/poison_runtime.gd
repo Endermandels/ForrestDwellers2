@@ -11,7 +11,7 @@ func init(res: StatusEffectPoisonResource) -> void:
 
 func apply(target: UnitRuntime) -> void:
 	if target.is_dead:
-		Console.print_line("* [%s] is dead and cannot apply [%s]" % [target, self])
+		Console.print_line("* [%s] is dead" % [target, self])
 		return
 	
 	# Increase DMG until it reaches stacks

@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=12 format=3 uid="uid://8w2sbqtlu371"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=11 format=3 uid="uid://8w2sbqtlu371"]
 
 [ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_7afc8"]
 [ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="1_mlxw7"]
 [ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="2_dbtjg"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="2_mnxqt"]
-[ext_resource type="Script" uid="uid://btwrh7qk7mpr5" path="res://scripts/resources/status_effects/poison_resource.gd" id="3_dbtjg"]
 [ext_resource type="Script" uid="uid://chpvbwes60tv6" path="res://scripts/resources/effects/drn_effect_resource.gd" id="3_i6usq"]
+[ext_resource type="Resource" uid="uid://ctjko7ol85y8o" path="res://resources/status_effects/poison.tres" id="5_i6usq"]
 
 [sub_resource type="Resource" id="Resource_7afc8"]
 script = ExtResource("1_7afc8")
@@ -28,15 +28,9 @@ script = ExtResource("3_i6usq")
 name_id = "DRN"
 metadata/_custom_type_script = "uid://chpvbwes60tv6"
 
-[sub_resource type="Resource" id="Resource_i6usq"]
-script = ExtResource("3_dbtjg")
-name_id = "Poison"
-triggers = Array[int]([2])
-metadata/_custom_type_script = "uid://btwrh7qk7mpr5"
-
 [sub_resource type="Resource" id="Resource_xo1uk"]
 script = ExtResource("2_dbtjg")
-status_effect = SubResource("Resource_i6usq")
+status_effect = ExtResource("5_i6usq")
 target_rule = 2
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 

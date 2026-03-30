@@ -56,3 +56,7 @@ func exit(data: BattleStateData) -> void:
 		var cur_unit = units_queue.pop_front()
 
 		units_queue.append(cur_unit)
+
+		# Reset Stats Modifiers
+		cur_unit.weak = 0
+		cur_unit.strength = 0

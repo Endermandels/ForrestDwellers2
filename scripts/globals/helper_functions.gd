@@ -63,8 +63,6 @@ func _get_valid_targets_across(source: UnitRuntime, bf: Array[UnitRuntime]) -> A
 ## Get targets using [source] [target_rule] on the battlefield [bf]
 func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Array[UnitRuntime]) -> Array[UnitRuntime]:
 	var res: Array[UnitRuntime] = []
-	var cols: int = Constants.BF_COLS
-	var rows: int = Constants.BF_ROWS
 
 	if target_rule == Constants.TargetRule.SELF:
 		res.append(source)
@@ -98,7 +96,12 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 		if valid_targets.size() > 0:
 			valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.hp > y.hp)
 			res.append(valid_targets[0])
-			
+	
+	elif target_rule == Constants.TargetRule.ALL_OPPONENTS:
+		for u: UnitRuntime in bf:
+			if u != null and u.is_enemy != source.is_enemy:
+				res.append(u)
+
 	else:
 		push_error("Unimplemented Target Rule: " + Constants.TargetRule.keys()[target_rule])
 

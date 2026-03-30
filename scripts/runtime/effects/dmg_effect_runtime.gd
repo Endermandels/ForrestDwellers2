@@ -12,10 +12,10 @@ func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 	var dmg_mod: int = dmg
 
 	if target.is_dead:
-		Console.print_line("* [%s] is already dead" % target)
+		Console.print_line("* [%s] is dead" % target)
 		return
 	
-	Console.print_line("* [%s] took [%d] DMG" % [target, dmg_mod])
+	Console.print_line("* [%s] suffered [%d] DMG" % [target, dmg_mod])
 	
 	if not is_pure:
 		dmg_mod = Helper.clamp_zero(dmg_mod - target.arm)
