@@ -17,6 +17,7 @@ enum TargetRule {
 	SELF, ## This unit
 	OPPONENT_ACROSS, ## Opponent directly opposing this unit
 	OPPONENT_ENGAGED, ## Opponent this unit is in combat with
+	OPPONENT_HIGHEST_HP, ## Opponent with the highest HP
 	ALL_OPPONENTS_ACROSS, ## All opposing units directly across from this unit 
 	ALL_OPPONENTS, ## All opposing units
 	ALL_ALLIES, ## All allied units

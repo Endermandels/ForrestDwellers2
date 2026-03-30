@@ -6,7 +6,7 @@ var dmg_run: DMGEffectRuntime
 func init(res: StatusEffectPoisonResource) -> void:
 	var dmg_res: DMGEffectResource = DMGEffectResource.new()
 	dmg_res.is_pure = true
-	dmg_res.dmg = 1
+	dmg_res.dmg = 0
 	dmg_run = DMGEffectRuntime.new(dmg_res)
 
 func apply(target: UnitRuntime) -> void:

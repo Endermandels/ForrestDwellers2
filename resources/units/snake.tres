@@ -7,7 +7,8 @@
 [resource]
 script = ExtResource("1_ec4t2")
 name_id = "Snake"
-base_hp = 100
+attack_target_rule = 3
+base_hp = 10
 base_atk = 1
 base_spd = 1
 base_mp = 2
