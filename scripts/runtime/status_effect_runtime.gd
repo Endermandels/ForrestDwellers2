@@ -15,6 +15,8 @@ static func from_resource(res: StatusEffectResource, _source: UnitRuntime) -> St
 		return StatusEffectPoisonRuntime.new(res, _source)
 	if res is StatusEffectIntimidateResource:
 		return StatusEffectIntimidateRuntime.new(res, _source)
+	if res is StatusEffectFearResource:
+		return StatusEffectFearRuntime.new(res, _source)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return StatusEffectRuntime.new(res, _source)
 

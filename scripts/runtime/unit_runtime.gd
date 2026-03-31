@@ -38,8 +38,9 @@ var mp: int
 var itm: int
 
 # Stats Modifiers (cleared at Turn End)
-var weak: int
-var strength: int
+var weak: int ## decrease ATK
+var strength: int ## increase ATK
+var fear: int ## chance to run away
 
 func _init(res: UnitResource) -> void:
 	name_id = res.name_id
@@ -58,6 +59,7 @@ func _init(res: UnitResource) -> void:
 
 	weak = 0
 	strength = 0
+	fear = 0
 
 	blocks_backline = res.blocks_backline
 	attack_target_rule = res.attack_target_rule

@@ -78,7 +78,8 @@ The purpose of this file is to keep track of random ideas about the game.
 
 ## Start of Turn Effects (in order)
 - Stun X: Skip action phase. Reduce X by 1. When X is 0, remove.
-- Stench X: X/(if party member: 30 else: 10) chance to flee the confrontation. Reduce by 1. When X is 0, remove.
+- Stench X: X/(if party member: 30 else: 10) chance to flee the confrontation. X/10 chance to skip attack phase. Reduce by 1. When X is 0, remove.
+- Fear X: X/(if party member: 30 else 10) chance to flee the confrontation. Reduce by 1. When X is 0, remove.
 - Intimidate X: Apply X WEAK. Remove.
 - Rejuvinate X: Apply X REP. Reduce X by 1. When X is 0, remove.
 - Acid X: Remove X ARMOR or deal 1 DMG if ARMOR is already 0. Reduce X by 1. When X is 0, remove.

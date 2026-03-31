@@ -4,6 +4,7 @@ class_name StateTurnStart
 @export var attack_state: State
 @export var status_effect_resolution_state: State
 @export var turn_end_state: State
+@export var battle_end_state: State
 
 func step(data: BattleStateData) -> State:
 	var state: State = turn_end_state
@@ -27,6 +28,31 @@ func step(data: BattleStateData) -> State:
 		data.activate_trigger = true
 		state = turn_end_state if cur_unit.is_dead else attack_state
 	
+	# Before entering attack state, check fear
+	if state == attack_state:
+		var cap = (30 if cur_unit.is_enemy else 10)
+		var rnd = randi_range(0, cap)
+
+		if rnd < cur_unit.fear:
+			# Flee!
+			Console.print_line("* [%s] fled out of fear" % cur_unit)
+			data.units_queue.pop_front()
+			data.battlefield[cur_unit.position] = null
+			state = self
+
+			# Check if an enemy fled and all enemies are gone
+			var no_enemies_left: bool = true
+
+			# Check all enemies HP
+			for u: UnitRuntime in data.units_queue:
+				if u.is_enemy and not u.is_dead:
+					no_enemies_left = false
+					break
+
+			if no_enemies_left:
+				state = battle_end_state
+				data.player_won = true
+
 	return state
 
 func enter(data: BattleStateData) -> void:

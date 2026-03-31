@@ -60,3 +60,4 @@ func exit(data: BattleStateData) -> void:
 		# Reset Stats Modifiers
 		cur_unit.weak = 0
 		cur_unit.strength = 0
+		cur_unit.fear = 0

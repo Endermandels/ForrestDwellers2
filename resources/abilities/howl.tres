@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=7 format=3 uid="uid://dolt5m5oxde2r"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=9 format=3 uid="uid://dolt5m5oxde2r"]
 
 [ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_vmxum"]
 [ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_dpwea"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="3_kb6xh"]
 [ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="3_r2dec"]
 [ext_resource type="Resource" uid="uid://nkqb0uo5wy0v" path="res://resources/status_effects/intimidate.tres" id="4_tculo"]
+[ext_resource type="Resource" uid="uid://3ihm7cj6qiuf" path="res://resources/status_effects/fear.tres" id="5_r2dec"]
 
 [sub_resource type="Resource" id="Resource_jk6fe"]
 script = ExtResource("3_r2dec")
@@ -12,9 +13,15 @@ status_effect = ExtResource("4_tculo")
 target_rule = 5
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 
+[sub_resource type="Resource" id="Resource_tculo"]
+script = ExtResource("3_r2dec")
+status_effect = ExtResource("5_r2dec")
+target_rule = 5
+metadata/_custom_type_script = "uid://d00scq1pm4o5o"
+
 [resource]
 script = ExtResource("3_kb6xh")
 name_id = "Howl"
 triggers = Array[int]([0])
-effects = Array[ExtResource("2_dpwea")]([SubResource("Resource_jk6fe")])
+effects = Array[ExtResource("2_dpwea")]([SubResource("Resource_jk6fe"), SubResource("Resource_tculo")])
 metadata/_custom_type_script = "uid://dpoiljl72xoph"

@@ -1,0 +1,3 @@
+extends StatusEffectResource
+class_name StatusEffectFearResource
+
