@@ -12,15 +12,11 @@ script = ExtResource("1_7afc8")
 left_units = 2
 left_stats = 14
 condition_type = 0
-Scalar = null
 scalar = 6
-Units = null
 metadata/_custom_type_script = "uid://d084ilajke2li"
 
 [sub_resource type="Resource" id="Resource_ejn0s"]
 script = ExtResource("1_7afc8")
-Boolean = null
-Units = null
 metadata/_custom_type_script = "uid://d084ilajke2li"
 
 [sub_resource type="Resource" id="Resource_geifv"]

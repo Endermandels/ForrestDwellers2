@@ -12,10 +12,10 @@ var source: UnitRuntime ## Source of status effect
 static func from_resource(res: StatusEffectResource, _source: UnitRuntime) -> StatusEffectRuntime:
 	if res is StatusEffectPoisonResource:
 		return StatusEffectPoisonRuntime.new(res, _source)
-	if res is StatusEffectIntimidateResource:
-		return StatusEffectIntimidateRuntime.new(res, _source)
-	if res is StatusEffectFearResource:
-		return StatusEffectFearRuntime.new(res, _source)
+	if res is StatusEffectWeaknessResource:
+		return StatusEffectWeaknessRuntime.new(res, _source)
+	if res is StatusEffectTerrorResource:
+		return StatusEffectTerrorRuntime.new(res, _source)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return StatusEffectRuntime.new(res, _source)
 

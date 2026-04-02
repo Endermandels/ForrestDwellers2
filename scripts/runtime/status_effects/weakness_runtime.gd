@@ -1,19 +1,17 @@
 extends StatusEffectRuntime
-class_name StatusEffectFearRuntime
+class_name StatusEffectWeaknessRuntime
 
-func init(res: StatusEffectFearResource) -> void:
-	name_id = "Fear"
+func init(res: StatusEffectWeaknessResource) -> void:
+	name_id = "Weakness"
 	triggers = [Constants.Trigger.TURN_START]
 
 func apply(target: UnitRuntime) -> void:
-	assert(stacks > 0, "Stacks must be greater than zero")
-
 	if target.is_dead:
 		Console.print_line("* [%s] is dead" % [target, self])
 		return
 
 	Console.print_line("* [%s] was afflicted by [%d] [%s]" % [target, stacks, self])
-	target.fear = stacks
-	stacks -= 1
+	target.weakness = stacks
+	stacks = 0
 
 	Console.print_line("* [%s] stacks remaining: [%s]" % [self, stacks])

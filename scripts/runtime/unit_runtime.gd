@@ -38,7 +38,7 @@ var mp: int
 var itm: int
 
 # Stats Modifiers (cleared at Turn End)
-var weak: int ## decrease ATK
+var weakness: int ## decrease ATK
 var strength: int ## increase ATK
 var fear: int ## chance to run away
 
@@ -57,7 +57,7 @@ func _init(res: UnitResource) -> void:
 	spd = base_spd
 	mp = base_mp
 
-	weak = 0
+	weakness = 0
 	strength = 0
 	fear = 0
 

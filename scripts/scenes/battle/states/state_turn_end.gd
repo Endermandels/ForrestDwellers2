@@ -58,6 +58,6 @@ func exit(data: BattleStateData) -> void:
 		units_queue.append(cur_unit)
 
 		# Reset Stats Modifiers
-		cur_unit.weak = 0
+		cur_unit.weakness = 0
 		cur_unit.strength = 0
 		cur_unit.fear = 0

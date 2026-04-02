@@ -14,17 +14,17 @@ func step(data: BattleStateData) -> State:
 
 	var status_effects_queue: Array[StatusEffectRuntime] = data.status_effect_queue
 	var status_effect: StatusEffectRuntime = status_effects_queue.pop_front()
-	
+
 	if status_effect:
 		status_effect.apply(cur_unit)
 		if cur_unit.is_dead:
 			# Dead units cannot have status effects
 			cur_unit.status_effects.clear()
+			data.status_effect_queue.clear()
 
 			# Trigger ON_DEATH abilities
-			for u: UnitRuntime in data.units_queue:
-				for a: AbilityRuntime in u.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_DEATH]]:
-					data.abilities_queue.append(a)
+			for a: AbilityRuntime in cur_unit.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_DEATH]]:
+				data.abilities_queue.append(a)
 
 			# Transition to Ability Resolution State if there are abilities to resolve, otherwise to next_state
 			if data.abilities_queue.size() > 0:

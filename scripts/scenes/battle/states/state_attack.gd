@@ -37,7 +37,7 @@ func step(data: BattleStateData) -> State:
 				defender.armored_defense = defender.arm > 0
 
 				# Apply attacker's damage to defender
-				dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weak + attacker.strength)
+				dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weakness + attacker.strength)
 				dmg_run.apply(attacker, defender)
 
 				if defender.is_dead:
