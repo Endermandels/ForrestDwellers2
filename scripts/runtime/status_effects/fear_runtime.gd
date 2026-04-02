@@ -2,7 +2,8 @@ extends StatusEffectRuntime
 class_name StatusEffectFearRuntime
 
 func init(res: StatusEffectFearResource) -> void:
-	pass
+	name_id = "Fear"
+	triggers = [Constants.Trigger.TURN_START]
 
 func apply(target: UnitRuntime) -> void:
 	assert(stacks > 0, "Stacks must be greater than zero")

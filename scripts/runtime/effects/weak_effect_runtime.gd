@@ -4,6 +4,7 @@ class_name WEAKEffectRuntime
 var weak: int ## How much WEAK to apply
 
 func init(res: WEAKEffectResource) -> void:
+	name_id = "WEAK"
 	weak = res.weak
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:

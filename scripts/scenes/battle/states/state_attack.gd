@@ -25,7 +25,7 @@ func step(data: BattleStateData) -> State:
 		if state != null:
 			var defender: UnitRuntime = data.defenders_queue.pop_front()
 
-			if defender:
+			if defender and not defender.is_dead:
 				var dmg_res: DMGEffectResource = DMGEffectResource.new()
 				var dmg_run: DMGEffectRuntime = DMGEffectRuntime.new(dmg_res)
 
@@ -40,7 +40,12 @@ func step(data: BattleStateData) -> State:
 				dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weak + attacker.strength)
 				dmg_run.apply(attacker, defender)
 
-				# Load abilities queue
+				if defender.is_dead:
+					# Trigger ON_DEATH abilities
+					for a: AbilityRuntime in defender.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_DEATH]]:
+						abilities_queue.append(a)
+
+				# Trigger ON_HIT abilities
 				for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
 					abilities_queue.append(a)
 

@@ -4,6 +4,7 @@ class_name STREffectRuntime
 var strength: int ## How much STR to apply
 
 func init(res: STREffectResource) -> void:
+	name_id = "STR"
 	strength = res.strength
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:

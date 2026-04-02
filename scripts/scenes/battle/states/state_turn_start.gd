@@ -28,8 +28,8 @@ func step(data: BattleStateData) -> State:
 		data.activate_trigger = true
 		state = turn_end_state if cur_unit.is_dead else attack_state
 	
-	# Before entering attack state, check fear
-	if state == attack_state:
+	# Before entering attack state, check fear (except for Player)
+	if state == attack_state and cur_unit != GameState.player:
 		var cap = (30 if cur_unit.is_enemy else 10)
 		var rnd = randi_range(0, cap)
 

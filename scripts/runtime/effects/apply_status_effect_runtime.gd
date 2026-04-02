@@ -5,6 +5,7 @@ var se_res: StatusEffectResource
 
 func init(res: ApplyStatusEffectResource) -> void:
 	se_res = res.status_effect
+	name_id = "Apply Status Effect"
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 	var se_run: StatusEffectRuntime = StatusEffectRuntime.from_resource(se_res, source)

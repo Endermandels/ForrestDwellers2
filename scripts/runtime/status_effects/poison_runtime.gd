@@ -8,6 +8,9 @@ func init(res: StatusEffectPoisonResource) -> void:
 	dmg_res.is_pure = true
 	dmg_res.dmg = 0
 	dmg_run = DMGEffectRuntime.new(dmg_res)
+	
+	name_id = "Poison"
+	triggers = [Constants.Trigger.TURN_END]
 
 func apply(target: UnitRuntime) -> void:
 	if target.is_dead:

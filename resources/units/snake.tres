@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=4 format=3 uid="uid://ctksvdktlu65h"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://ctksvdktlu65h"]
 
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_3nts6"]
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_ec4t2"]
 [ext_resource type="Resource" uid="uid://8w2sbqtlu371" path="res://resources/abilities/venom.tres" id="2_0mbmv"]
+[ext_resource type="Resource" uid="uid://bhpw7yu4psp3o" path="res://resources/abilities/death_cry.tres" id="2_klhou"]
 
 [resource]
 script = ExtResource("1_ec4t2")
@@ -13,5 +14,5 @@ base_atk = 1
 base_spd = 1
 base_mp = 2
 itm = 1
-abilities = Array[ExtResource("1_3nts6")]([ExtResource("2_0mbmv")])
+abilities = Array[ExtResource("1_3nts6")]([ExtResource("2_klhou"), ExtResource("2_0mbmv")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

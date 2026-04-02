@@ -19,7 +19,7 @@ static func from_resource(res: EffectResource) -> EffectRuntime:
 	return EffectRuntime.new(res)
 
 func _init(res: EffectResource) -> void:
-	name_id = res.name_id
+	name_id = "" # Set by each subclass
 	target_rule = res.target_rule
 	init(res)
 

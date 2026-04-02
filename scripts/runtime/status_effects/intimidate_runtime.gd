@@ -6,6 +6,9 @@ var weak_run: WEAKEffectRuntime
 func init(res: StatusEffectIntimidateResource) -> void:
 	var weak_res: WEAKEffectResource = WEAKEffectResource.new()
 	weak_run = WEAKEffectRuntime.new(weak_res)
+	
+	name_id = "Intimidate"
+	triggers = [Constants.Trigger.TURN_START]
 
 func apply(target: UnitRuntime) -> void:
 	if target.is_dead:

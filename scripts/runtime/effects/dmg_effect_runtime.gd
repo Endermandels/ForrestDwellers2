@@ -5,6 +5,7 @@ var dmg: int ## How much DMG to apply
 var is_pure: bool ## Whether it bypasses ARM
 
 func init(res: DMGEffectResource) -> void:
+	name_id = "DMG"
 	is_pure = res.is_pure
 	dmg = res.dmg
 

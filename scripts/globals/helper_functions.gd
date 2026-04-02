@@ -99,7 +99,12 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 	
 	elif target_rule == Constants.TargetRule.ALL_OPPONENTS:
 		for u: UnitRuntime in bf:
-			if u != null and u.is_enemy != source.is_enemy:
+			if u != null and not u.is_dead and u.is_enemy != source.is_enemy:
+				res.append(u)
+	
+	elif target_rule == Constants.TargetRule.ALL_ALLIES:
+		for u: UnitRuntime in bf:
+			if u != null and not u.is_dead and u.is_enemy == source.is_enemy:
 				res.append(u)
 
 	else:

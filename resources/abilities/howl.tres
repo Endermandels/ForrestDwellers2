@@ -1,21 +1,29 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=9 format=3 uid="uid://dolt5m5oxde2r"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=11 format=3 uid="uid://dolt5m5oxde2r"]
 
 [ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_vmxum"]
 [ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_dpwea"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="3_kb6xh"]
 [ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="3_r2dec"]
-[ext_resource type="Resource" uid="uid://nkqb0uo5wy0v" path="res://resources/status_effects/intimidate.tres" id="4_tculo"]
-[ext_resource type="Resource" uid="uid://3ihm7cj6qiuf" path="res://resources/status_effects/fear.tres" id="5_r2dec"]
+[ext_resource type="Script" uid="uid://bs80346l0mclt" path="res://scripts/resources/status_effects/intimidate_resource.gd" id="4_r2dec"]
+[ext_resource type="Script" uid="uid://muqky5usn5p8" path="res://scripts/resources/status_effects/fear_resource.gd" id="5_tculo"]
+
+[sub_resource type="Resource" id="Resource_115hf"]
+script = ExtResource("4_r2dec")
+metadata/_custom_type_script = "uid://bs80346l0mclt"
 
 [sub_resource type="Resource" id="Resource_jk6fe"]
 script = ExtResource("3_r2dec")
-status_effect = ExtResource("4_tculo")
+status_effect = SubResource("Resource_115hf")
 target_rule = 5
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 
+[sub_resource type="Resource" id="Resource_uah8m"]
+script = ExtResource("5_tculo")
+metadata/_custom_type_script = "uid://muqky5usn5p8"
+
 [sub_resource type="Resource" id="Resource_tculo"]
 script = ExtResource("3_r2dec")
-status_effect = ExtResource("5_r2dec")
+status_effect = SubResource("Resource_uah8m")
 target_rule = 5
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 

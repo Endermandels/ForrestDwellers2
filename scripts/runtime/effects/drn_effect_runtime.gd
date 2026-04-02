@@ -4,6 +4,7 @@ class_name DRNEffectRuntime
 var drn: int ## How much DRN to apply
 
 func init(res: DRNEffectResource) -> void:
+	name_id = "DRN"
 	drn = res.drn
 
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:

@@ -1,9 +1,8 @@
 extends RefCounted
 class_name StatusEffectRuntime
 
-var name_id: String
+var name_id: String # TODO: Set appropriately
 var stacks: int
-var target_rule: Constants.TargetRule
 var triggers: Array[Constants.Trigger]
 
 var source: UnitRuntime ## Source of status effect
@@ -21,12 +20,13 @@ static func from_resource(res: StatusEffectResource, _source: UnitRuntime) -> St
 	return StatusEffectRuntime.new(res, _source)
 
 func _init(res: StatusEffectResource, _source: UnitRuntime = null) -> void:
-	name_id = res.name_id
 	stacks = res.stacks
-	target_rule = res.target_rule
-	triggers = res.triggers
 	source = _source
 
+	# Set by each subclass
+	name_id = "" 
+	triggers = []
+	
 	init(res)
 
 func _to_string() -> String:
