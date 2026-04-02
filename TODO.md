@@ -4,7 +4,7 @@ x Design project architecture
 
 # March
 x Design project architecture
-- Develop Battle
+x Develop Battle
 
 # April
 x Design project architecture
