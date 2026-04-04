@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=9 format=3 uid="uid://dgoma0vmm8ead"]
+
+[ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_tp6ul"]
+[ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_4n724"]
+[ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="3_4n724"]
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="3_adbmp"]
+[ext_resource type="Script" uid="uid://bmdkr2frcc3ee" path="res://scripts/resources/status_effects/stun_resource.gd" id="4_adbmp"]
+
+[sub_resource type="Resource" id="Resource_adbmp"]
+script = ExtResource("1_tp6ul")
+left_units = 2
+left_stats = 15
+condition_type = 0
+operation = 0
+boolean = true
+right_units = 2
+right_stats = 0
+metadata/_custom_type_script = "uid://d084ilajke2li"
+
+[sub_resource type="Resource" id="Resource_u55i8"]
+script = ExtResource("4_adbmp")
+metadata/_custom_type_script = "uid://bmdkr2frcc3ee"
+
+[sub_resource type="Resource" id="Resource_is71s"]
+script = ExtResource("3_4n724")
+status_effect = SubResource("Resource_u55i8")
+target_rule = 2
+metadata/_custom_type_script = "uid://d00scq1pm4o5o"
+
+[resource]
+script = ExtResource("3_adbmp")
+name_id = "Bash"
+triggers = Array[int]([3])
+conditions = Array[ExtResource("1_tp6ul")]([SubResource("Resource_adbmp")])
+effects = Array[ExtResource("2_4n724")]([SubResource("Resource_is71s")])
+metadata/_custom_type_script = "uid://dpoiljl72xoph"

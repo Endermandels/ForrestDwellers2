@@ -41,6 +41,7 @@ enum UnitStat {
 	IS_BACKLINE,
 	BLOCKS_BACKLINE,
 	ARMORED_DEFENSE,
+	FULL_HEALTH_DEFENSE,
 }
 
 enum AbilityConditionOperation {

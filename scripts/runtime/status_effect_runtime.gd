@@ -1,7 +1,7 @@
 extends RefCounted
 class_name StatusEffectRuntime
 
-var name_id: String # TODO: Set appropriately
+var name_id: String
 var stacks: int
 var triggers: Array[Constants.Trigger]
 
@@ -16,6 +16,8 @@ static func from_resource(res: StatusEffectResource, _source: UnitRuntime) -> St
 		return StatusEffectWeaknessRuntime.new(res, _source)
 	if res is StatusEffectTerrorResource:
 		return StatusEffectTerrorRuntime.new(res, _source)
+	if res is StatusEffectStunResource:
+		return StatusEffectStunRuntime.new(res, _source)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return StatusEffectRuntime.new(res, _source)
 

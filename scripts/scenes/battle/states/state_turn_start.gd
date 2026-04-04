@@ -26,7 +26,7 @@ func step(data: BattleStateData) -> State:
 				state = attack_state
 	else:
 		data.activate_trigger = true
-		state = turn_end_state if cur_unit.is_dead else attack_state
+		state = turn_end_state if (cur_unit.is_dead or cur_unit.is_stunned) else attack_state
 	
 	# Before entering attack state, check fear (except for Player)
 	if state == attack_state and cur_unit != GameState.player:

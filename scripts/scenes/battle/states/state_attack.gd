@@ -33,25 +33,29 @@ func step(data: BattleStateData) -> State:
 				attacker.engaged_opponent = defender
 				defender.engaged_opponent = attacker
 
-				# Set armored defense if applicable
+				# Set defense metrics
 				defender.armored_defense = defender.arm > 0
+				defender.full_health_defense = defender.hp == defender.base_hp
 
-				# Apply attacker's damage to defender
+				# Apply attacker's damage to defender (only if the damage is greater than 0)
 				dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weakness + attacker.strength)
-				dmg_run.apply(attacker, defender)
+				if (dmg_run.dmg > 0):
+					dmg_run.apply(attacker, defender)
 
-				if defender.is_dead:
-					# Trigger ON_DEATH abilities
-					for a: AbilityRuntime in defender.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_DEATH]]:
+					if defender.is_dead:
+						# Trigger ON_DEATH abilities
+						for a: AbilityRuntime in defender.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_DEATH]]:
+							abilities_queue.append(a)
+
+					# Trigger ON_HIT abilities
+					for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
 						abilities_queue.append(a)
 
-				# Trigger ON_HIT abilities
-				for a: AbilityRuntime in attacker.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.ON_HIT]]:
-					abilities_queue.append(a)
-
-				# Transition to Ability Resolution State if there are abilities to resolve
-				if abilities_queue.size() > 0:
-					state = ability_resolution_state
+					# Transition to Ability Resolution State if there are abilities to resolve
+					if abilities_queue.size() > 0:
+						state = ability_resolution_state
+				else:
+					Console.print_line("* [%s] is too weak to attack" % attacker)
 			else:
 				Console.print_line("* No valid targets left")
 	else:

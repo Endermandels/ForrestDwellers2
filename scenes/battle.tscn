@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
 [ext_resource type="Script" uid="uid://fpth6bdbxeah" path="res://scripts/scenes/battle/unit_spawner.gd" id="2_p1qf1"]
-[ext_resource type="Resource" uid="uid://dkrn8exxynce6" path="res://resources/encounters/all_snakes.tres" id="4_03edq"]
+[ext_resource type="Resource" uid="uid://cjh0pu4kvo0hj" path="res://resources/encounters/single_snake.tres" id="4_22uqi"]
 [ext_resource type="Script" uid="uid://brwygnppu4gbk" path="res://scripts/components/state_machine.gd" id="6_6vh42"]
 [ext_resource type="Script" uid="uid://dd0i66ghxikiq" path="res://scripts/scenes/battle/states/state_battle_start.gd" id="7_4k1nj"]
 [ext_resource type="Script" uid="uid://cs81g1ehpjm0v" path="res://scripts/scenes/battle/states/state_turn_start.gd" id="8_f4pi3"]
@@ -28,7 +28,7 @@ battlefield_handler = NodePath("BattlefieldHandler")
 
 [node name="UnitSpawner" type="Node" parent="BattleHandler"]
 script = ExtResource("2_p1qf1")
-encounter = ExtResource("4_03edq")
+encounter = ExtResource("4_22uqi")
 
 [node name="BattleStateMachine" type="Node" parent="BattleHandler" node_paths=PackedStringArray("cur_state")]
 script = ExtResource("6_6vh42")

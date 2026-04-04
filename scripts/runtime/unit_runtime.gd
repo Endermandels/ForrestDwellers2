@@ -3,17 +3,12 @@ class_name UnitRuntime
 
 # Runtime Data
 var name_id: String
-var is_enemy: bool ## Whether this unit is an enemy of the player or not
 var attack_target_rule: Constants.TargetRule ## TargetRule for choosing defenders of this unit's attack
 var position: int: ## The battle field index this unit occupies
 	set(val):
 		position = val
 		is_backline = Helper.is_backline_row(Helper.get_row(val)) # Set the is_backline flag automatically
-var is_backline: bool ## Whether this unit is currently in the backlines
 var blocks_backline: bool ## Whether this unit blocks backline units from attacking
-var is_dead: bool ## Whether this unit is dead
-var armored_defense: bool ## Whether this unit defended with ARM > 0
-
 var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
 var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
 var status_effects: Array[StatusEffectRuntime] ## Active status effects
@@ -37,10 +32,20 @@ var spd: int
 var mp: int
 var itm: int
 
-# Stats Modifiers (cleared at Turn End)
+# Boolean attributes
+var is_enemy: bool ## Whether this unit is an enemy of the player or not
+var is_dead: bool ## Whether this unit is dead
+var is_backline: bool ## Whether this unit is currently in the backlines
+
+# Defense Metrics
+var armored_defense: bool ## Whether this unit defended with ARM > 0
+var full_health_defense: bool ## Whether this unit defended with HP == BASE_HP
+
+# Modifiers (cleared at Turn End)
 var weakness: int ## decrease ATK
 var strength: int ## increase ATK
 var fear: int ## chance to run away
+var is_stunned: bool ## Whether this unit should skip its attack
 
 func _init(res: UnitResource) -> void:
 	name_id = res.name_id

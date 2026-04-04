@@ -27,8 +27,14 @@ func _get_stat(unit: UnitRuntime, stat: Constants.UnitStat):
 		res = unit.mp
 	elif stat == Constants.UnitStat.ARM:
 		res = unit.arm
+	elif stat == Constants.UnitStat.HP:
+		res = unit.hp
+	elif stat == Constants.UnitStat.BASE_HP:
+		res = unit.base_hp
 	elif stat == Constants.UnitStat.ARMORED_DEFENSE:
 		res = unit.armored_defense
+	elif stat == Constants.UnitStat.FULL_HEALTH_DEFENSE:
+		res = unit.full_health_defense
 	else:
 		push_error("! Unknown unit stat: [%s]" % stat)
 	
