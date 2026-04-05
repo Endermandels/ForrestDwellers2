@@ -68,6 +68,7 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 		res.append(source)
 
 	elif target_rule == Constants.TargetRule.OPPONENT_ENGAGED:
+		assert(source.engaged_opponent != null, "NULL Engaged Opponent")
 		res.append(source.engaged_opponent)
 
 	elif target_rule == Constants.TargetRule.OPPONENT_ACROSS:

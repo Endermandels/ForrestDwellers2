@@ -15,7 +15,7 @@ func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 		Console.print_line("* [%s] is dead and cannot gain a status effect" % target)
 		return
 	
-	Console.print_line("* [%s] gained [%d] stacks of [%s]" % [target, se_run.stacks, se_run])
+	Console.print_line("* [%s] gained [%d] [%s]" % [target, se_run.stacks, se_run])
 
 	for se: StatusEffectRuntime in target.status_effects:
 		if se.name_id == se_run.name_id:

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=8 format=3 uid="uid://bhpw7yu4psp3o"]
+
+[ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_fnkr7"]
+[ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_pwj2b"]
+[ext_resource type="Script" uid="uid://d00scq1pm4o5o" path="res://scripts/resources/effects/apply_status_effect_resource.gd" id="3_34tnc"]
+[ext_resource type="Script" uid="uid://muqky5usn5p8" path="res://scripts/resources/status_effects/terror_resource.gd" id="4_i44au"]
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="5_o34vg"]
+
+[sub_resource type="Resource" id="Resource_8cmk6"]
+script = ExtResource("4_i44au")
+stacks = 3
+metadata/_custom_type_script = "uid://muqky5usn5p8"
+
+[sub_resource type="Resource" id="Resource_mmmic"]
+script = ExtResource("3_34tnc")
+status_effect = SubResource("Resource_8cmk6")
+target_rule = 6
+metadata/_custom_type_script = "uid://d00scq1pm4o5o"
+
+[resource]
+script = ExtResource("5_o34vg")
+name_id = "Death Cry"
+triggers = Array[int]([5])
+effects = Array[ExtResource("2_pwj2b")]([SubResource("Resource_mmmic")])
+metadata/_custom_type_script = "uid://dpoiljl72xoph"

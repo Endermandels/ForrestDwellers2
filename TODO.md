@@ -9,6 +9,7 @@ x Develop Battle
 # April
 x Design project architecture
 - Develop Battle
+- Create units spreadsheet
 
 Limit Battle development to the core gameplay aspects before iterating and creating multiple features.
 BATTLE MUST BE FUN BEFORE PUTTING IN THE REST OF THE GAME!
@@ -34,4 +35,4 @@ BATTLE MUST BE FUN BEFORE PUTTING IN THE REST OF THE GAME!
 - Market Game
 
 # CURRENT TASK
-- Add more Abilities (and animals)
+- Add more Abilities (and animals). DO NOT PLAN TOO MUCH IN THIS STAGE. Just keep making abilities and status effects.

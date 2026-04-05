@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbhv0jciwsnok"]
+[gd_scene load_steps=18 format=3 uid="uid://cbhv0jciwsnok"]
 
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
@@ -6,12 +6,16 @@
 [ext_resource type="Resource" uid="uid://cjh0pu4kvo0hj" path="res://resources/encounters/single_snake.tres" id="4_22uqi"]
 [ext_resource type="Script" uid="uid://brwygnppu4gbk" path="res://scripts/components/state_machine.gd" id="6_6vh42"]
 [ext_resource type="Script" uid="uid://dd0i66ghxikiq" path="res://scripts/scenes/battle/states/state_battle_start.gd" id="7_4k1nj"]
+[ext_resource type="Script" uid="uid://q1i6aeca8q64" path="res://scripts/scenes/battle/states/state_stun_check.gd" id="8_ekamt"]
 [ext_resource type="Script" uid="uid://cs81g1ehpjm0v" path="res://scripts/scenes/battle/states/state_turn_start.gd" id="8_f4pi3"]
 [ext_resource type="Script" uid="uid://bgkqs7fb35c5n" path="res://scripts/scenes/battle/states/state_attack.gd" id="9_66ngm"]
-[ext_resource type="Script" uid="uid://dbwkqwo3f1wst" path="res://scripts/scenes/battle/states/state_turn_end.gd" id="10_03edq"]
+[ext_resource type="Script" uid="uid://dbxqr2gc8qq2u" path="res://scripts/scenes/battle/states/state_terror_check.gd" id="9_djc8l"]
+[ext_resource type="Script" uid="uid://qpa6jsrlbxum" path="res://scripts/scenes/battle/states/state_turn_end.gd" id="10_03edq"]
+[ext_resource type="Script" uid="uid://k4hjdwes17c1" path="res://scripts/scenes/battle/states/state_turn_start_2.gd" id="10_h4dll"]
 [ext_resource type="Script" uid="uid://ddv8lrddohi4d" path="res://scripts/scenes/battle/states/state_battle_end.gd" id="11_22uqi"]
 [ext_resource type="Script" uid="uid://bfn3vc62w6ol0" path="res://scripts/scenes/battle/states/state_ability_resolution.gd" id="12_03edq"]
 [ext_resource type="Script" uid="uid://2h57essb03ic" path="res://scripts/scenes/battle/states/state_status_effect_resolution.gd" id="12_22uqi"]
+[ext_resource type="Script" uid="uid://xougi5br4woc" path="res://scripts/scenes/battle/states/state_turn_end_2.gd" id="12_p0caf"]
 [ext_resource type="Script" uid="uid://b8os75onks5wp" path="res://scripts/scenes/battle/battlefield_handler.gd" id="13_22uqi"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("auto_step_timer", "battle_handler", "battlefield_handler")]
@@ -39,32 +43,54 @@ script = ExtResource("7_4k1nj")
 turn_start_state = NodePath("../StateTurnStart")
 ability_resolution_state = NodePath("../StateAbilityResolution")
 
-[node name="StateTurnStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("attack_state", "status_effect_resolution_state", "turn_end_state", "battle_end_state")]
+[node name="StateTurnStart" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("stun_state", "status_effect_resolution_state")]
 script = ExtResource("8_f4pi3")
-attack_state = NodePath("../StateAttack")
+stun_state = NodePath("../StateStunCheck")
 status_effect_resolution_state = NodePath("../StateStatusEffectResolution")
+
+[node name="StateStunCheck" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("terror_state", "turn_end_state")]
+script = ExtResource("8_ekamt")
+terror_state = NodePath("../StateTerrorCheck")
 turn_end_state = NodePath("../StateTurnEnd")
+
+[node name="StateTerrorCheck" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "turn_start_state_2", "battle_end_state")]
+script = ExtResource("9_djc8l")
+turn_start_state = NodePath("../StateTurnStart")
+turn_start_state_2 = NodePath("../StateTurnStart2")
 battle_end_state = NodePath("../StateBattleEnd")
+
+[node name="StateTurnStart2" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("attack_state", "ability_resolution_state")]
+script = ExtResource("10_h4dll")
+attack_state = NodePath("../StateAttack")
+ability_resolution_state = NodePath("../StateAbilityResolution")
 
 [node name="StateAttack" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_end_state", "ability_resolution_state")]
 script = ExtResource("9_66ngm")
 turn_end_state = NodePath("../StateTurnEnd")
 ability_resolution_state = NodePath("../StateAbilityResolution")
 
-[node name="StateTurnEnd" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "status_effect_resolution_state", "battle_end_state")]
+[node name="StateTurnEnd" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_end_2_state", "ability_resolution_state")]
 script = ExtResource("10_03edq")
+turn_end_2_state = NodePath("../StateTurnEnd2")
+ability_resolution_state = NodePath("../StateAbilityResolution")
+
+[node name="StateTurnEnd2" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("turn_start_state", "status_effect_resolution_state")]
+script = ExtResource("12_p0caf")
 turn_start_state = NodePath("../StateTurnStart")
 status_effect_resolution_state = NodePath("../StateStatusEffectResolution")
-battle_end_state = NodePath("../StateBattleEnd")
 
 [node name="StateBattleEnd" type="Node" parent="BattleHandler/BattleStateMachine"]
 script = ExtResource("11_22uqi")
 
-[node name="StateAbilityResolution" type="Node" parent="BattleHandler/BattleStateMachine"]
+[node name="StateAbilityResolution" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("battle_end_state", "turn_start_state")]
 script = ExtResource("12_03edq")
+battle_end_state = NodePath("../StateBattleEnd")
+turn_start_state = NodePath("../StateTurnStart")
 
-[node name="StateStatusEffectResolution" type="Node" parent="BattleHandler/BattleStateMachine"]
+[node name="StateStatusEffectResolution" type="Node" parent="BattleHandler/BattleStateMachine" node_paths=PackedStringArray("ability_resolution_state", "battle_end_state")]
 script = ExtResource("12_22uqi")
+ability_resolution_state = NodePath("../StateAbilityResolution")
+battle_end_state = NodePath("../StateBattleEnd")
 
 [node name="BattlefieldHandler" type="Node" parent="BattleHandler"]
 script = ExtResource("13_22uqi")

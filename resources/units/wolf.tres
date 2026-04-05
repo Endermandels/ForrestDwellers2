@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_7lw6w"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_cmmx1"]
 [ext_resource type="Resource" uid="uid://dolt5m5oxde2r" path="res://resources/abilities/intimidate.tres" id="2_rpmbs"]
-[ext_resource type="Resource" uid="uid://bhpw7yu4psp3o" path="res://resources/abilities/death_cry.tres" id="2_yd88c"]
+[ext_resource type="Resource" uid="uid://bhpw7yu4psp3o" path="res://resources/abilities/universal/death_cry.tres" id="2_yd88c"]
 
 [resource]
 script = ExtResource("1_7lw6w")

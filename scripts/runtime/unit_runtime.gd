@@ -8,11 +8,11 @@ var position: int: ## The battle field index this unit occupies
 	set(val):
 		position = val
 		is_backline = Helper.is_backline_row(Helper.get_row(val)) # Set the is_backline flag automatically
-var blocks_backline: bool ## Whether this unit blocks backline units from attacking
+
+# Arrays
 var abilities_dict: Dictionary[String, Array] ## Constants.Trigger: Array of Abilities
 var abilities: Array[AbilityRuntime] ## All abilities associated with this unit
 var status_effects: Array[StatusEffectRuntime] ## Active status effects
-var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
 
 # Stats
 var base_hp: int
@@ -33,13 +33,16 @@ var mp: int
 var itm: int
 
 # Boolean attributes
-var is_enemy: bool ## Whether this unit is an enemy of the player or not
 var is_dead: bool ## Whether this unit is dead
+var is_enemy: bool ## Whether this unit is an enemy of the player or not
 var is_backline: bool ## Whether this unit is currently in the backlines
+var blocks_backline: bool ## Whether this unit blocks backline units from attacking
+var death_has_been_handled: bool ## Whether this unit's death has been handled (On Death triggering, Game State checking, etc.)
 
-# Defense Metrics
+# Attack Specific
 var armored_defense: bool ## Whether this unit defended with ARM > 0
 var full_health_defense: bool ## Whether this unit defended with HP == BASE_HP
+var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
 
 # Modifiers (cleared at Turn End)
 var weakness: int ## decrease ATK
@@ -66,6 +69,7 @@ func _init(res: UnitResource) -> void:
 	strength = 0
 	fear = 0
 
+	death_has_been_handled = false
 	blocks_backline = res.blocks_backline
 	attack_target_rule = res.attack_target_rule
 	position = 0
