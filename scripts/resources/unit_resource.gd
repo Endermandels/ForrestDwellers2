@@ -2,8 +2,6 @@ extends Resource
 class_name UnitResource
 
 @export_placeholder("Wolf") var name_id: String = ""
-@export var is_enemy: bool = true ## Whether this unit is an enemy of the player or not
-@export var blocks_backline: bool = true ## Whether this unit blocks backline units from attacking
 @export var attack_target_rule: Constants.TargetRule = Constants.TargetRule.OPPONENT_ACROSS ## TargetRule for choosing defenders of this unit's attack
 @export_group("Base Stats")
 @export_range(0, 100) var base_hp: int = 1

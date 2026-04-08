@@ -36,7 +36,9 @@ var itm: int
 var is_dead: bool ## Whether this unit is dead
 var is_enemy: bool ## Whether this unit is an enemy of the player or not
 var is_backline: bool ## Whether this unit is currently in the backlines
-var blocks_backline: bool ## Whether this unit blocks backline units from attacking
+var blocks_backline: bool: ## Whether this unit blocks backline units from attacking
+	get():
+		return not is_dead and not is_flying
 var death_has_been_handled: bool ## Whether this unit's death has been handled (On Death triggering, Game State checking, etc.)
 
 # Attack Specific
@@ -45,20 +47,26 @@ var full_health_defense: bool ## Whether this unit defended with HP == BASE_HP
 var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
 
 # Modifiers (cleared at Turn End)
-var weakness: int ## decrease ATK
-var strength: int ## increase ATK
-var fear: int ## chance to run away
+var weakness: int ## Decrease ATK
+var strength: int ## Increase ATK
+var fear: int ## Chance to run away
+var is_flying: bool: ## Whether this unit has the Flying Passive Ability
+	get():
+		return Helper.unit_has_passive(self, Constants.PassiveAbility.FLYING)
 var is_stunned: bool ## Whether this unit should skip its attack
 
 func _init(res: UnitResource) -> void:
+	# Resource-specific
 	name_id = res.name_id
-	is_enemy = res.is_enemy
+	attack_target_rule = res.attack_target_rule
 	base_hp = res.base_hp
 	base_atk = res.base_atk
 	base_arm = res.base_arm
 	base_spd = res.base_spd
 	base_mp = res.base_mp
 	itm = res.itm
+
+	# Runtime-specific
 	hp = base_hp
 	atk = base_atk
 	arm = base_arm
@@ -69,9 +77,10 @@ func _init(res: UnitResource) -> void:
 	strength = 0
 	fear = 0
 
+	is_enemy = true
+	is_flying = false
 	death_has_been_handled = false
-	blocks_backline = res.blocks_backline
-	attack_target_rule = res.attack_target_rule
+	blocks_backline = true
 	position = 0
 
 	abilities_dict = {}

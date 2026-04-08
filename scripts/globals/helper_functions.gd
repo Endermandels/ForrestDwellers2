@@ -21,6 +21,12 @@ func get_col(pos: int, columns: int = Constants.BF_COLS) -> int:
 func is_backline_row(row: int) -> bool:
 	return (row == Constants.BF_PLAYER_BACKLINE_ROW) or (row == Constants.BF_ENEMY_BACKLINE_ROW)
 
+## Returns whether the given unit has the specified passive ability
+func unit_has_passive(unit: UnitRuntime, passive: Constants.PassiveAbility) -> bool:
+	return unit.abilities_dict[Constants.Trigger.keys()[Constants.Trigger.PASSIVE]].any(
+		func (a: AbilityRuntime): return a.passive == passive
+	)
+
 ## Returns all valid targets across from source
 func _get_valid_targets_across(source: UnitRuntime, bf: Array[UnitRuntime]) -> Array[UnitRuntime]:
 	var res: Array[UnitRuntime] = []
@@ -31,8 +37,8 @@ func _get_valid_targets_across(source: UnitRuntime, bf: Array[UnitRuntime]) -> A
 	var dir: int = 1 if source.is_enemy else -1 ## Which direction to check for enemies from
 	var blocked_by_ally: bool = false
 
-	# Backline units must have the space in front of them clear of allies in order to target enemies
-	if source.is_backline:
+	# Backline ground units must have the space in front of them clear of allies in order to target enemies
+	if source.is_backline and not source.is_flying:
 		var ally_in_front: UnitRuntime = bf[Helper.get_pos(src_row + dir, src_col)]
 		blocked_by_ally = (ally_in_front != null) and ally_in_front.blocks_backline
 
@@ -49,14 +55,22 @@ func _get_valid_targets_across(source: UnitRuntime, bf: Array[UnitRuntime]) -> A
 				var pos: int = Helper.get_pos(row, col)
 				var target: UnitRuntime = bf[pos]
 				
-				if target and target != source:
-					if source.is_backline and source.is_enemy == target.is_enemy and target.blocks_backline:
-						# Applies when the source is a backline unit
-						# Any allied units in this column that aren't the source block the source's way of attack
+				if target != null and target != source:
+					if (
+						not source.is_flying 							# Only ground units can be blocked
+						and source.is_backline 							# Only backline units can be blocked
+						and source.is_enemy == target.is_enemy 			# Can only be blocked by allies
+						and target.blocks_backline						# Can only be blocked by blocking units
+					):
 						break # Continue to the next column
-					elif source.is_enemy != target.is_enemy and not target.is_dead:
-						res.append(target)
-						break # Continue to the next column
+					elif (
+						not target.is_dead 								# Cannot target dead units currently
+						and source.is_enemy != target.is_enemy 			# Cannot target your own units currently
+						and (source.is_flying or not target.is_flying)	# Ground units cannot target flying units
+					):
+						res.append(target) # Add valid target
+						if not source.is_flying: # Ground units cannot attack behind other ground units
+							break # Continue to the next column
 
 	return res
 

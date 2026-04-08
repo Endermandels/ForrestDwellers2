@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://cdoixu8ii3eji"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=4 format=3 uid="uid://cdoixu8ii3eji"]
 
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_7lw6w"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_cmmx1"]
 [ext_resource type="Resource" uid="uid://dolt5m5oxde2r" path="res://resources/abilities/intimidate.tres" id="2_rpmbs"]
-[ext_resource type="Resource" uid="uid://bhpw7yu4psp3o" path="res://resources/abilities/universal/death_cry.tres" id="2_yd88c"]
 
 [resource]
 script = ExtResource("1_7lw6w")
@@ -12,5 +11,5 @@ base_hp = 15
 base_atk = 5
 base_spd = 2
 itm = 1
-abilities = Array[ExtResource("1_cmmx1")]([ExtResource("2_yd88c"), ExtResource("2_rpmbs")])
+abilities = Array[ExtResource("1_cmmx1")]([ExtResource("2_rpmbs")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

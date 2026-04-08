@@ -5,14 +5,15 @@ const PLAYER_RESOURCE = preload("res://resources/units/player.tres")
 const WOLF_RESOURCE = preload("res://resources/units/wolf.tres") # TODO: DELETE
 const SNAKE_RESOURCE = preload("res://resources/units/snake.tres") # TODO: DELETE
 const BEAR_RESOURCE = preload("res://resources/units/bear.tres") # TODO: DELETE
+const VULTURE_RESOURCE = preload("res://resources/units/vulture.tres") # TODO: DELETE
 
 const debug_player_units = [
-	null,
+	WOLF_RESOURCE,
 	BEAR_RESOURCE,
-	null,
-	null,
 	PLAYER_RESOURCE,
-	null
+	VULTURE_RESOURCE,
+	BEAR_RESOURCE,
+	VULTURE_RESOURCE
 ] #TODO: DELETE
 
 var player_units: Array[UnitRuntime] = []

@@ -2,15 +2,27 @@ extends Node
 # Global
 
 enum Trigger {
+	## States
+
 	BATTLE_START,
 	TURN_START,
 	TURN_END,
+	
+	## Attack
+
 	ON_HIT,
+	ON_WOUNDED_BY_HIT,
+
+	## Anytime
+
 	ON_HURT,
 	ON_DEATH,
 	ON_WOUNDED,
-	ON_WOUNDED_BY_HURT,
-	PASSIVE,
+	PASSIVE ## Indicates PassiveAbility enum
+}
+
+enum PassiveAbility {
+	FLYING
 }
 
 enum TargetRule {
