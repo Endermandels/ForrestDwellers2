@@ -22,7 +22,8 @@ enum Trigger {
 }
 
 enum PassiveAbility {
-	FLYING
+	FLYING,
+	SCAVENGER
 }
 
 enum TargetRule {
@@ -30,6 +31,7 @@ enum TargetRule {
 	OPPONENT_ACROSS, ## Opponent directly opposing this unit
 	OPPONENT_ENGAGED, ## Opponent this unit is in combat with
 	OPPONENT_HIGHEST_HP, ## Opponent with the highest HP
+	DEAD_ACROSS, ## Dead unit (either ally or opponent) or the lowest health opponent accross 
 	ALL_OPPONENTS_ACROSS, ## All opposing units directly across from this unit 
 	ALL_OPPONENTS, ## All opposing units
 	ALL_ALLIES, ## All allied units
@@ -52,6 +54,8 @@ enum UnitStat {
 	IS_DEAD,
 	IS_BACKLINE,
 	BLOCKS_BACKLINE,
+
+	ALIVE_DEFENSE,
 	ARMORED_DEFENSE,
 	FULL_HEALTH_DEFENSE,
 }

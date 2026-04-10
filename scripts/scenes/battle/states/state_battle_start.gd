@@ -20,8 +20,8 @@ func enter(data: BattleStateData) -> void:
 	Console.print_line("# Battle Start #", Color.GREEN)
 	data.units_queue.sort_custom(func (a: UnitRuntime, b: UnitRuntime): return a.spd > b.spd)
 
-	# TODO: Polish this up somehow (used for setting up first turn because Turn Start State calls data.next_unit on enter)
-	data.units_queue.push_front(data.units_queue.pop_back())
+	# Use the first unit in data.units_queue
+	data.cycle_next_unit = false
 
 func exit(data: BattleStateData) -> void:
 	pass

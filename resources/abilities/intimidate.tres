@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://bs80346l0mclt"
 [sub_resource type="Resource" id="Resource_jk6fe"]
 script = ExtResource("3_ncfoc")
 status_effect = SubResource("Resource_115hf")
-target_rule = 5
+target_rule = 6
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 
 [sub_resource type="Resource" id="Resource_uah8m"]
@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://muqky5usn5p8"
 [sub_resource type="Resource" id="Resource_tculo"]
 script = ExtResource("3_ncfoc")
 status_effect = SubResource("Resource_uah8m")
-target_rule = 5
+target_rule = 6
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 
 [resource]

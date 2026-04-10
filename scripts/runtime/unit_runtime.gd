@@ -42,6 +42,7 @@ var blocks_backline: bool: ## Whether this unit blocks backline units from attac
 var death_has_been_handled: bool ## Whether this unit's death has been handled (On Death triggering, Game State checking, etc.)
 
 # Attack Specific
+var alive_defense: bool ## Whether this unit was alive when defending
 var armored_defense: bool ## Whether this unit defended with ARM > 0
 var full_health_defense: bool ## Whether this unit defended with HP == BASE_HP
 var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged in combat with
@@ -50,10 +51,15 @@ var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged
 var weakness: int ## Decrease ATK
 var strength: int ## Increase ATK
 var fear: int ## Chance to run away
+var is_stunned: bool ## Whether this unit should skip its attack
+
+# Passive Abilities
 var is_flying: bool: ## Whether this unit has the Flying Passive Ability
 	get():
-		return Helper.unit_has_passive(self, Constants.PassiveAbility.FLYING)
-var is_stunned: bool ## Whether this unit should skip its attack
+		return not is_dead and Helper.unit_has_passive(self, Constants.PassiveAbility.FLYING)
+var is_scavenger: bool: ## Whether this unit has the Scavenger Passive Ability
+	get():
+		return not is_dead and Helper.unit_has_passive(self, Constants.PassiveAbility.SCAVENGER)
 
 func _init(res: UnitResource) -> void:
 	# Resource-specific
@@ -92,9 +98,12 @@ func _init(res: UnitResource) -> void:
 	for a in res.abilities:
 		var runtime = AbilityRuntime.new(a, self)
 
-		abilities.append(runtime)
-		for t in runtime.triggers:
-			abilities_dict[Constants.Trigger.keys()[t]].append(runtime)
+		add_ability(runtime)
+
+func add_ability(ability: AbilityRuntime) -> void:
+	abilities.append(ability)
+	for t in ability.triggers:
+		abilities_dict[Constants.Trigger.keys()[t]].append(ability)
 
 func _to_string() -> String:
 	return "%s @ (R%d, C%d)" % [name_id + (" Corpse" if is_dead else ""), Helper.get_row(position), Helper.get_col(position)]

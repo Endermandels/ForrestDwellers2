@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_adbmp"]
 script = ExtResource("1_tp6ul")
 left_units = 2
-left_stats = 15
+left_stats = 16
 condition_type = 0
 operation = 0
 boolean = true

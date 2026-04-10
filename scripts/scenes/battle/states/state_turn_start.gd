@@ -18,6 +18,7 @@ func step(data: BattleStateData) -> State:
 func enter(data: BattleStateData) -> void:
 	print("* Entered Turn Start State")
 	data.next_unit()
+	data.cycle_next_unit = true
 
 	var cur_unit: UnitRuntime = data.units_queue[0]
 

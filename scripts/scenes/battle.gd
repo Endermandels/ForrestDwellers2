@@ -36,6 +36,8 @@ func print_unit_stats(row: int, col: int) -> void:
 
 func _ready() -> void:
 	auto_step_timer.timeout.connect(battle_handler.step)
+	if Console.visible:
+		Console.grab_focus_custom()
 
 func _process(delta: float) -> void:
 	var command: String = ""

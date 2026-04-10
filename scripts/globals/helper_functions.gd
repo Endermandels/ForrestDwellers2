@@ -59,18 +59,25 @@ func _get_valid_targets_across(source: UnitRuntime, bf: Array[UnitRuntime]) -> A
 					if (
 						not source.is_flying 							# Only ground units can be blocked
 						and source.is_backline 							# Only backline units can be blocked
-						and source.is_enemy == target.is_enemy 			# Can only be blocked by allies
-						and target.blocks_backline						# Can only be blocked by blocking units
+						and target.blocks_backline						# Blocked by blocking units
+						and source.is_enemy == target.is_enemy 			# Blocked by allies
 					):
-						break # Continue to the next column
+						break 						# Continue to the next column
 					elif (
-						not target.is_dead 								# Cannot target dead units currently
-						and source.is_enemy != target.is_enemy 			# Cannot target your own units currently
+						not target.is_dead 								# Target alive units by default
+						and source.is_enemy != target.is_enemy 			# Target enemy units by default
 						and (source.is_flying or not target.is_flying)	# Ground units cannot target flying units
 					):
-						res.append(target) # Add valid target
-						if not source.is_flying: # Ground units cannot attack behind other ground units
-							break # Continue to the next column
+						res.append(target) 			# Add valid target
+						if not source.is_flying: 	# Ground units cannot attack behind other ground units
+							break 					# Continue to the next column
+					elif (
+						source.is_scavenger 							# Scavenger specific targeting
+						and target.is_dead 								# Target any dead units
+					):
+						res.append(target) 			# Add valid target
+						if not source.is_flying: 	# Ground units cannot attack behind other ground units
+							break 					# Continue to the next column
 
 	return res
 
@@ -110,6 +117,16 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 		var valid_targets = _get_valid_targets_across(source, bf)
 		if valid_targets.size() > 0:
 			valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.hp > y.hp)
+			res.append(valid_targets[0])
+	
+	elif target_rule == Constants.TargetRule.DEAD_ACROSS:
+		var valid_targets = _get_valid_targets_across(source, bf)
+		if valid_targets.size() > 0:
+			# Prefer dead units
+			valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.is_dead)
+			# If there are no dead units, prefer lower hp units
+			if not valid_targets[0].is_dead:
+				valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.hp < y.hp)
 			res.append(valid_targets[0])
 	
 	elif target_rule == Constants.TargetRule.ALL_OPPONENTS:

@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="UnitResource" load_steps=4 format=3 uid="uid://4kv48q7g4ljg"]
+[gd_resource type="Resource" script_class="UnitResource" load_steps=5 format=3 uid="uid://4kv48q7g4ljg"]
 
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_5edlk"]
 [ext_resource type="Resource" uid="uid://yw6yt8acmdtx" path="res://resources/abilities/flight.tres" id="2_2rakk"]
 [ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="2_drw4v"]
+[ext_resource type="Resource" uid="uid://cjvs2f66ayg3e" path="res://resources/abilities/scavenger.tres" id="3_2rakk"]
 
 [resource]
 script = ExtResource("2_drw4v")
 name_id = "Vulture"
-attack_target_rule = 3
+attack_target_rule = 4
 base_hp = 15
 base_atk = 3
+base_mp = 1
 itm = 1
-abilities = Array[ExtResource("1_5edlk")]([ExtResource("2_2rakk")])
+abilities = Array[ExtResource("1_5edlk")]([ExtResource("2_2rakk"), ExtResource("3_2rakk")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

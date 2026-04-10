@@ -14,12 +14,12 @@ metadata/_custom_type_script = "uid://muqky5usn5p8"
 [sub_resource type="Resource" id="Resource_mmmic"]
 script = ExtResource("3_34tnc")
 status_effect = SubResource("Resource_8cmk6")
-target_rule = 6
+target_rule = 7
 metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 
 [resource]
 script = ExtResource("5_o34vg")
 name_id = "Death Cry"
-triggers = Array[int]([5])
+triggers = Array[int]([6])
 effects = Array[ExtResource("2_pwj2b")]([SubResource("Resource_mmmic")])
 metadata/_custom_type_script = "uid://dpoiljl72xoph"

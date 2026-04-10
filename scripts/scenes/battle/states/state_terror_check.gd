@@ -20,13 +20,12 @@ func step(data: BattleStateData) -> State:
 			# Flee!
 			Console.print_line("* [%s] fled out of fear" % cur_unit)
 
-			# Remove unit from the battlefield and units_queue			
-			data.units_queue.pop_front()
-			data.battlefield[cur_unit.position] = null
-			state = turn_start_state
-
-			if data.is_end_state():
-				state = battle_end_state
+			# Remove unit from battle			
+			data.remove_unit(cur_unit)
+			state = battle_end_state if data.is_end_state() else turn_start_state
+			
+			# Use the first unit in data.units_queue
+			data.cycle_next_unit = false
 
 	return state
 

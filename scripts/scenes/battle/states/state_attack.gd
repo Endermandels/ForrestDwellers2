@@ -58,7 +58,7 @@ func _handle_attack(data: BattleStateData) -> State:
 	var attacker: UnitRuntime = data.units_queue[0]
 	var defender: UnitRuntime = data.defenders_queue.pop_front()
 
-	if defender != null and not defender.is_dead:
+	if defender != null:
 		var dmg_res: DMGEffectResource = DMGEffectResource.new()
 		var dmg_run: DMGEffectRuntime = DMGEffectRuntime.new(dmg_res)
 
@@ -67,18 +67,27 @@ func _handle_attack(data: BattleStateData) -> State:
 		defender.engaged_opponent = attacker
 
 		# Set defense metrics
+		defender.alive_defense = not defender.is_dead
 		defender.armored_defense = (defender.arm > 0)
 		defender.full_health_defense = (defender.hp == defender.base_hp)
 
 		# Apply attacker's damage to defender (only if the damage is greater than 0)
 		dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weakness + attacker.strength)
-		if (dmg_run.dmg > 0):
-			dmg_run.apply(attacker, defender)
+		if dmg_run.dmg > 0:
+			# Alive defenders logic
+			if not defender.is_dead:
+				Console.print_line("* [%s] attacked [%s]" % [attacker, defender])
 
-			if data.is_end_state():
-				state = battle_end_state
+				dmg_run.apply(attacker, defender)
 
-			data.handle_deaths()
+				if data.is_end_state():
+					state = battle_end_state
+
+				data.handle_deaths()
+			else:
+				# ! NOTE: Scavenger specific logic
+				Console.print_line("* [%s] devoured [%s]" % [attacker, defender])
+				data.remove_unit(defender)
 
 			# Trigger On Hit abilities
 			if not attacker.is_dead:

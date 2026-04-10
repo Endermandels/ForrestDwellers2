@@ -12,6 +12,7 @@ var battlefield: Array[UnitRuntime] = []
 
 var next_state: State = null ## The state to transition to at the end of the current state
 var player_won: bool = false ## Whether the player has won the battle
+var cycle_next_unit: bool = true ## Whether the next_unit function cycles the current unit to the back of the queue
 
 # Player input data
 var player_confirm_selection: bool = false ## Set to true to indicate player has confirmed selection
@@ -19,6 +20,11 @@ var player_selected_target: int = 0 ## Which valid target the player is currentl
 var player_valid_targets: Array[UnitRuntime] = [] ## The valid targets available for the player to attack
 
 #region Common State Functions
+## Remove the given unit from the battle
+func remove_unit(unit: UnitRuntime) -> void:
+	units_queue.erase(unit)
+	battlefield[unit.position] = null
+
 ## Returns true on reaching an end state, false otherwise. Sets player_won.
 func is_end_state() -> bool:
 	var reached_end: bool = false
@@ -43,12 +49,14 @@ func is_end_state() -> bool:
 	return reached_end
 
 ## Reset the current unit's modifiers.
-## Move the current unit to the end of the units_queue.
+## If cycle_next_unit is enabled, move the current unit to the end of the units_queue.
 func next_unit() -> void:
+	var cur_unit = units_queue[0]
+	
 	# Move current unit to back of queue
-	var cur_unit = units_queue.pop_front()
-
-	units_queue.append(cur_unit)
+	if cycle_next_unit:
+		units_queue.pop_front()
+		units_queue.append(cur_unit)
 
 	# Reset Modifiers
 	cur_unit.weakness = 0

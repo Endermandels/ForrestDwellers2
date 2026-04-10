@@ -16,6 +16,8 @@ var command_received: String = ""
 func _ready() -> void:
 	if hide_on_ready:
 		hide()
+	else:
+		line_edit.grab_focus()
 	line_edit.text_submitted.connect(_on_line_edit_text_submitted)
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
@@ -60,3 +62,7 @@ func toggle() -> void:
 		show()
 	else:
 		hide()
+
+## Grab focus for the Console
+func grab_focus_custom() -> void:
+	line_edit.grab_focus()

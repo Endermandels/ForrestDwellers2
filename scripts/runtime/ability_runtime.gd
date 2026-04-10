@@ -31,3 +31,14 @@ func _init(res: AbilityResource, source: UnitRuntime) -> void:
 
 func _to_string() -> String:
 	return name_id
+
+## Returns a duplicate of this ability
+func duplicate(source: UnitRuntime) -> AbilityRuntime:
+	var res = AbilityResource.new()
+	res.name_id = name_id
+	res.is_passive = is_passive
+	res.passive = passive
+	res.triggers = triggers.duplicate_deep()
+	res.conditions = conditions.duplicate_deep()
+	res.effects = effects.duplicate_deep()
+	return AbilityRuntime.new(res, source)

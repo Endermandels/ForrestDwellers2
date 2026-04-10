@@ -29,8 +29,20 @@ func _get_stat(unit: UnitRuntime, stat: Constants.UnitStat):
 		res = unit.arm
 	elif stat == Constants.UnitStat.HP:
 		res = unit.hp
+	elif stat == Constants.UnitStat.ATK:
+		res = unit.atk
+	elif stat == Constants.UnitStat.SPD:
+		res = unit.spd
 	elif stat == Constants.UnitStat.BASE_HP:
 		res = unit.base_hp
+	elif stat == Constants.UnitStat.BASE_MP:
+		res = unit.base_mp
+	elif stat == Constants.UnitStat.BASE_ATK:
+		res = unit.base_atk
+	elif stat == Constants.UnitStat.BASE_ARM:
+		res = unit.base_arm
+	elif stat == Constants.UnitStat.ALIVE_DEFENSE:
+		res = unit.alive_defense
 	elif stat == Constants.UnitStat.ARMORED_DEFENSE:
 		res = unit.armored_defense
 	elif stat == Constants.UnitStat.FULL_HEALTH_DEFENSE:
