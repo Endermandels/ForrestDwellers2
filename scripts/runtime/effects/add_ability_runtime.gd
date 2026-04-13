@@ -9,13 +9,13 @@ func init(res: AddAbilityResource) -> void:
 	ability_res = res.ability
 	name_id = "Add Ability Effect"
 
-# Source is always the ability holder, so target must be the enemy
+# Source is always the ability holder, so if from_enemy is enabled, the target must be the engaged opponent
 func apply(source: UnitRuntime, target: UnitRuntime) -> void:
-	if target.is_dead:
-		Console.print_line("* [%s] is dead" % target)
-		return
-	
 	if not from_enemy:
+		if target.is_dead:
+			Console.print_line("* [%s] is dead" % target)
+			return
+
 		var ability_run: AbilityRuntime = AbilityRuntime.new(ability_res, source)
 		var found_ability: bool = target.abilities.any(func (a: AbilityRuntime): return a.name_id == ability_run.name_id)
 		
@@ -25,18 +25,24 @@ func apply(source: UnitRuntime, target: UnitRuntime) -> void:
 		else:
 			Console.print_line("* [%s] already has [%s]" % [target, ability_run])
 	else:
-		# Find all abilities that this unit can get from the enemy (source)
+		if source.is_dead:
+			Console.print_line("* [%s] is dead" % source)
+			return
+		
+		# Find all abilities that this unit (source) can get from the enemy (target)
 		var valid_abilities: Array[AbilityRuntime] = []
 		
-		for a: AbilityRuntime in source.abilities:
-			if not target.abilities.any(func (ab: AbilityRuntime): return ab.name_id == a.name_id):
-				# Target doesn't have the ability
+		for a: AbilityRuntime in target.abilities:
+			if (
+				a.triggers.any(func (t: Constants.Trigger): return not (t in [Constants.Trigger.BATTLE_START])) 	# No Battle Start only Abilities
+				and not source.abilities.any(func (ab: AbilityRuntime): return ab.name_id == a.name_id)			# No duplicate Abilities
+			):
 				valid_abilities.append(a)
 		
 		if valid_abilities.size() > 0:
 			var ability: AbilityRuntime = valid_abilities.pick_random()
 
-			Console.print_line("* [%s] gained [%s] from [%s]" % [target, ability, source])
-			target.add_ability(ability.duplicate(target))
+			Console.print_line("* [%s] gained [%s] from [%s]" % [source, ability, target])
+			source.add_ability(ability.duplicate(source))
 		else:
-			Console.print_line("* [%s] cannot gain abilities from [%s]" % [target, source])
+			Console.print_line("* [%s] cannot gain abilities from [%s]" % [source, target])

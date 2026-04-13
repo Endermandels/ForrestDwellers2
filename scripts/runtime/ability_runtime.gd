@@ -35,10 +35,13 @@ func _to_string() -> String:
 ## Returns a duplicate of this ability
 func duplicate(source: UnitRuntime) -> AbilityRuntime:
 	var res = AbilityResource.new()
-	res.name_id = name_id
-	res.is_passive = is_passive
-	res.passive = passive
-	res.triggers = triggers.duplicate_deep()
-	res.conditions = conditions.duplicate_deep()
-	res.effects = effects.duplicate_deep()
-	return AbilityRuntime.new(res, source)
+	var run = AbilityRuntime.new(res, source)
+
+	run.name_id = name_id
+	run.is_passive = is_passive
+	run.passive = passive
+	run.triggers = triggers.duplicate_deep()
+	run.conditions = conditions.duplicate_deep()
+	run.effects = effects.duplicate_deep()
+	
+	return run

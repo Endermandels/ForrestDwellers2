@@ -1,3 +1,4 @@
+@tool
 extends EffectResource
 class_name AddAbilityResource
 
@@ -12,6 +13,6 @@ class_name AddAbilityResource
 @export var ability: AbilityResource ## The ability to add
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == "ability":
+	if property.name in ["ability", "target_rule"]:
 		if from_enemy:
 			property.usage = PROPERTY_USAGE_NO_EDITOR

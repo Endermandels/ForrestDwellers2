@@ -37,7 +37,7 @@ The purpose of this file is to keep track of random ideas about the game.
 ### Battle
 - The following applies to the player or animal whose turn it is:
 - Resolve start of turn effects (stun, etc.)
-- If the animal is dead, apply a Stench 1 effect on all allies and skip Attack phase
+- If the animal is dead, apply a Fear 1 effect on all allies and skip Attack phase
 - If it is the player's turn, choose which animal(s) to attack
 - Otherwise, choose which animal(s) to attack based on attack preference
 - If it is an enemy, it may offer to join the Player's group on its turn instead of attacking.  This is made more likely based on how low the enemy's health is.
@@ -78,7 +78,6 @@ The purpose of this file is to keep track of random ideas about the game.
 
 ## Start of Turn Effects (in order)
 - Stun X: Skip action phase. Reduce X by 1. When X is 0, remove.
-- Stench X: X/(if party member: 30 else: 10) chance to flee the confrontation. X/10 chance to skip attack phase. Reduce by 1. When X is 0, remove.
 - Fear X: X/(if party member: 30 else 10) chance to flee the confrontation. Reduce by 1. When X is 0, remove.
 - Intimidate X: Apply X WEAK. Remove.
 - Rejuvinate X: Apply X REP. Reduce X by 1. When X is 0, remove.
@@ -133,12 +132,6 @@ The purpose of this file is to keep track of random ideas about the game.
 - PA
 - On Hit: If the target has ARMOR, deal 1 DMG
 
-### Filthy Rags
-- Common
-- PA
-- Battle Start: Gain Stench 1
-- On Hit: Give Stench 1
-
 ### Torch
 - Common
 - PA
@@ -179,11 +172,6 @@ The purpose of this file is to keep track of random ideas about the game.
 - P
 - Battle Start: Target enemy gains 2 Acid. Discard
 
-### Reeking Flask
-- Uncommon
-- P
-- Battle Start: Target enemy gains 3 Stench. Discard
-
 ### Molting Charm
 - Uncommon
 - A
@@ -193,12 +181,6 @@ The purpose of this file is to keep track of random ideas about the game.
 - Uncommon
 - A
 - On Hit: If the target has 0 ARMOR, deal 1 DMG
-
-### Reeking Bladder
-- Uncommon
-- PA
-- Battle Start: Gain 1 Stench
-- On Hurt: The attacker gains Stench 5. Discard
 
 ### Acidic Bladder
 - Uncommon
@@ -321,7 +303,6 @@ The purpose of this file is to keep track of random ideas about the game.
 - SPD   1
 - MP    3
 - ITEM  1
-- Battle Start: Spend 1 MP to give all ground enemies Stench 1
 - On Hurt: Deal 1 DMG to the attacker.  Trigger this animal's On Hit abilities
 
 ### Vulture
@@ -359,4 +340,3 @@ The purpose of this file is to keep track of random ideas about the game.
 - Battle Start: Spend 1 MP to give all enemies Intimidate 2
 - Alternate 4: Spend 1 MP to deal 4 DMG to every enemy.  1/10 Chance to give each afflicted enemy Burn 2
 - Alternate 3: Gain Fly 2
-- Passive: Immune to Stench

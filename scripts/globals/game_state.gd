@@ -8,11 +8,11 @@ const BEAR_RESOURCE = preload("res://resources/units/bear.tres") # TODO: DELETE
 const VULTURE_RESOURCE = preload("res://resources/units/vulture.tres") # TODO: DELETE
 
 const debug_player_units = [
-	WOLF_RESOURCE,
-	BEAR_RESOURCE,
+	VULTURE_RESOURCE,
 	PLAYER_RESOURCE,
 	VULTURE_RESOURCE,
-	BEAR_RESOURCE,
+	VULTURE_RESOURCE,
+	VULTURE_RESOURCE,
 	VULTURE_RESOURCE
 ] #TODO: DELETE
 

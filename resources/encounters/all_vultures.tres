@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=4 format=3 uid="uid://xl3jwkrnt0gp"]
+
+[ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_qvuca"]
+[ext_resource type="Resource" uid="uid://4kv48q7g4ljg" path="res://resources/units/vulture.tres" id="2_nclt8"]
+[ext_resource type="Script" uid="uid://dyxplp8h42jir" path="res://scripts/resources/encounter_resource.gd" id="2_wqb3y"]
+
+[resource]
+script = ExtResource("2_wqb3y")
+backline_units = Array[ExtResource("1_qvuca")]([ExtResource("2_nclt8"), ExtResource("2_nclt8"), ExtResource("2_nclt8")])
+frontline_units = Array[ExtResource("1_qvuca")]([ExtResource("2_nclt8"), ExtResource("2_nclt8"), ExtResource("2_nclt8")])
+metadata/_custom_type_script = "uid://dyxplp8h42jir"

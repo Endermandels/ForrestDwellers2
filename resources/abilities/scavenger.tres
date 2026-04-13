@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="AbilityResource" load_steps=13 format=3 uid="uid://cjvs2f66ayg3e"]
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=12 format=3 uid="uid://cjvs2f66ayg3e"]
 
 [ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_kwpn5"]
 [ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_wo6aj"]
 [ext_resource type="Script" uid="uid://chpvbwes60tv6" path="res://scripts/resources/effects/drn_effect_resource.gd" id="3_6io5a"]
 [ext_resource type="Script" uid="uid://c0y26ci2ym3dj" path="res://scripts/resources/effects/heal_effect_resource.gd" id="3_7s64q"]
 [ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="3_jcw0b"]
-[ext_resource type="Resource" uid="uid://8w2sbqtlu371" path="res://resources/abilities/venom.tres" id="4_6io5a"]
 [ext_resource type="Script" uid="uid://c4uhiclqhppgn" path="res://scripts/resources/effects/add_ability_resource.gd" id="5_6ee2y"]
 
 [sub_resource type="Resource" id="Resource_6ee2y"]
@@ -30,7 +29,8 @@ metadata/_custom_type_script = "uid://c0y26ci2ym3dj"
 
 [sub_resource type="Resource" id="Resource_mr01r"]
 script = ExtResource("5_6ee2y")
-ability = ExtResource("4_6io5a")
+from_enemy = true
+target_rule = 2
 metadata/_custom_type_script = "uid://c4uhiclqhppgn"
 
 [resource]
