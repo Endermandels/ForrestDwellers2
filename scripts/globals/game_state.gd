@@ -11,9 +11,9 @@ const debug_player_units = [
 	VULTURE_RESOURCE,
 	PLAYER_RESOURCE,
 	VULTURE_RESOURCE,
-	VULTURE_RESOURCE,
-	VULTURE_RESOURCE,
-	VULTURE_RESOURCE
+	WOLF_RESOURCE,
+	SNAKE_RESOURCE,
+	BEAR_RESOURCE
 ] #TODO: DELETE
 
 var player_units: Array[UnitRuntime] = []
@@ -28,6 +28,7 @@ func init_new_game() -> void:
 			res = res.duplicate()
 			var run = UnitRuntime.new(res)
 
+			run.courage += 2 # Player animals are more courageous
 			run.is_enemy = false
 			run.position = i + 6
 			player_units.append(run)

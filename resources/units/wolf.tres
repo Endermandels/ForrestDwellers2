@@ -10,6 +10,6 @@ name_id = "Wolf"
 base_hp = 15
 base_atk = 5
 base_spd = 2
-itm = 1
+courage = 9
 abilities = Array[ExtResource("1_cmmx1")]([ExtResource("2_rpmbs")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

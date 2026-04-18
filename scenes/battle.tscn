@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cb6pd84bagnfl" path="res://scripts/scenes/battle.gd" id="1_p1qf1"]
 [ext_resource type="Script" uid="uid://dbxkfbj260lm2" path="res://scripts/scenes/battle/battle_handler.gd" id="1_th188"]
 [ext_resource type="Script" uid="uid://fpth6bdbxeah" path="res://scripts/scenes/battle/unit_spawner.gd" id="2_p1qf1"]
-[ext_resource type="Resource" uid="uid://xl3jwkrnt0gp" path="res://resources/encounters/all_vultures.tres" id="4_djc8l"]
+[ext_resource type="Resource" uid="uid://tohksge3wiiu" path="res://resources/encounters/all_wolves.tres" id="4_djc8l"]
 [ext_resource type="Script" uid="uid://brwygnppu4gbk" path="res://scripts/components/state_machine.gd" id="6_6vh42"]
 [ext_resource type="Script" uid="uid://dd0i66ghxikiq" path="res://scripts/scenes/battle/states/state_battle_start.gd" id="7_4k1nj"]
 [ext_resource type="Script" uid="uid://q1i6aeca8q64" path="res://scripts/scenes/battle/states/state_stun_check.gd" id="8_ekamt"]

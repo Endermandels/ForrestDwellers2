@@ -30,7 +30,12 @@ var atk: int
 var arm: int
 var spd: int
 var mp: int
+
+# Hidden Stats
 var itm: int
+var courage: int:
+	set(val):
+		courage = min(val, 10) # Cannot exceed 10
 
 # Boolean attributes
 var is_dead: bool ## Whether this unit is dead
@@ -50,7 +55,10 @@ var engaged_opponent: UnitRuntime ## The opponent this unit is currently engaged
 # Modifiers (cleared at Turn End)
 var weakness: int ## Decrease ATK
 var strength: int ## Increase ATK
-var fear: int ## Chance to run away
+var fear: int: ## Chance to run away
+	set(val):
+		fear = min(val, 10) # Cannot exceed 10
+
 var is_stunned: bool ## Whether this unit should skip its attack
 
 # Passive Abilities
@@ -70,6 +78,7 @@ func _init(res: UnitResource) -> void:
 	base_arm = res.base_arm
 	base_spd = res.base_spd
 	base_mp = res.base_mp
+	courage = res.courage
 	itm = res.itm
 
 	# Runtime-specific

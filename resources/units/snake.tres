@@ -12,6 +12,6 @@ base_hp = 10
 base_atk = 1
 base_spd = 1
 base_mp = 2
-itm = 1
+courage = 2
 abilities = Array[ExtResource("1_3nts6")]([ExtResource("2_0mbmv")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

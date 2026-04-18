@@ -12,4 +12,5 @@ base_atk = 2
 base_arm = 1
 base_mp = 2
 itm = 4
+courage = 10
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

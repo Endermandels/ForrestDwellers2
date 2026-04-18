@@ -12,6 +12,6 @@ attack_target_rule = 4
 base_hp = 10
 base_atk = 3
 base_mp = 2
-itm = 1
+courage = 6
 abilities = Array[ExtResource("1_5edlk")]([ExtResource("2_2rakk"), ExtResource("3_2rakk")])
 metadata/_custom_type_script = "uid://rjnstbmhir1t"

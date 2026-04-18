@@ -11,12 +11,14 @@ func step(data: BattleStateData) -> State:
 
 	assert(not cur_unit.is_dead, "Dead units should not reach the Terror Check State")
 	
-	# Player won't flee
-	if cur_unit != GameState.player:
-		var cap = (30 if cur_unit.is_enemy else 10) # Player animals are harder to scare away
-		var rnd = randi_range(0, cap)
+	# Player won't flee, nor will a unit without fear
+	if cur_unit != GameState.player and cur_unit.fear > 0:
+		var rnd: float = randf()
+		var flee_chance: float = 7.0 / (7.0 + pow(float(cur_unit.fear) / 10.0, -cur_unit.courage)) # Base chance of 7/8
 
-		if rnd < cur_unit.fear:
+		print("Flee Chance: %f" % flee_chance)
+
+		if rnd < flee_chance:
 			# Flee!
 			Console.print_line("* [%s] fled out of fear" % cur_unit)
 
