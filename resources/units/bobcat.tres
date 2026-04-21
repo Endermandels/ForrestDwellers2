@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitResource" load_steps=4 format=3 uid="uid://bnalxsg4uwcyq"]
+
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="1_itfr8"]
+[ext_resource type="Resource" uid="uid://ccuq41lp5svkm" path="res://resources/abilities/ambush.tres" id="2_atp2q"]
+[ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="2_dgfmc"]
+
+[resource]
+script = ExtResource("2_dgfmc")
+name_id = "Bobcat"
+attack_target_rule = 4
+base_hp = 15
+base_atk = 4
+base_spd = 2
+abilities = Array[ExtResource("1_itfr8")]([ExtResource("2_atp2q")])
+metadata/_custom_type_script = "uid://rjnstbmhir1t"

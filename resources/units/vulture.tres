@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("2_drw4v")
 name_id = "Vulture"
-attack_target_rule = 4
+attack_target_rule = 5
 base_hp = 10
 base_atk = 3
 base_mp = 2

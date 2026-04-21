@@ -20,6 +20,8 @@ func _get_enemy_units() -> Array[UnitRuntime]:
 
 	for res: UnitResource in encounter.frontline_units:
 		if res != null: # Empty space
+			print(res)
+			print(res.name_id)
 			var run = UnitRuntime.new(res)
 
 			run.position = Helper.get_pos(Constants.BF_ENEMY_FRONTLINE_ROW, col)

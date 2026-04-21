@@ -5,6 +5,7 @@ const DEATH_CRY = preload("res://resources/abilities/universal/death_cry.tres")
 
 var units_queue: Array[UnitRuntime] = []
 var defenders_queue: Array[UnitRuntime] = []
+var counterstrike_queue: Array[UnitRuntime] = []
 var abilities_queue: Array[AbilityRuntime] = []
 var status_effects_queue: Array[StatusEffectRuntime] = []
 var effects_queue: Array[Callable] = [] ## Preload each effect's apply method with a source and target

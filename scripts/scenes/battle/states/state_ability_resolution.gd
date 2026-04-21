@@ -53,10 +53,10 @@ func _handle_ability(data: BattleStateData, ability: AbilityRuntime) -> void:
 		for e in ability.effects:
 			var targets = Helper.get_targets(ability.source_unit, e.target_rule, data.battlefield)
 
-			data.effects_queue.append(_apply_effects.bind(targets, e, ability))
+			data.effects_queue.append(_apply_effects.bind(targets, e, ability, data))
 	else:
 		Console.print_line("* [%s] could not use [%s]" % [ability.source_unit, ability])
 
-func _apply_effects(targets: Array[UnitRuntime], effect: EffectRuntime, ability: AbilityRuntime) -> void:
+func _apply_effects(targets: Array[UnitRuntime], effect: EffectRuntime, ability: AbilityRuntime, data: BattleStateData) -> void:
 	for u in targets:
-		effect.apply(ability.source_unit, u)
+		effect.apply(ability.source_unit, u, data)

@@ -54,8 +54,9 @@ func exit(data: BattleStateData) -> void:
 	data.next_state = turn_end_state if (data.defenders_queue.size() == 0) else self
 
 func _handle_attack(data: BattleStateData) -> State:
+	var is_counterstrike: bool = data.counterstrike_queue.size() > 0
 	var state = ability_resolution_state
-	var attacker: UnitRuntime = data.units_queue[0]
+	var attacker: UnitRuntime = data.units_queue[0] if data.counterstrike_queue.size() == 0 else data.counterstrike_queue.pop_front()
 	var defender: UnitRuntime = data.defenders_queue.pop_front()
 
 	if defender != null:
@@ -74,7 +75,6 @@ func _handle_attack(data: BattleStateData) -> State:
 		# Apply attacker's damage to defender (only if the damage is greater than 0)
 		dmg_run.dmg = Helper.clamp_zero(attacker.atk - attacker.weakness + attacker.strength)
 		if dmg_run.dmg > 0:
-			# Alive defenders logic
 			if not defender.is_dead:
 				Console.print_line("* [%s] attacked [%s]" % [attacker, defender])
 
@@ -92,6 +92,13 @@ func _handle_attack(data: BattleStateData) -> State:
 			# Trigger On Hit abilities
 			if not attacker.is_dead:
 				data.trigger_unit_abilities(attacker, Constants.Trigger.ON_HIT)
+			
+				# Trigger On Ally Hurt by Hit abilities when not a counterstrike
+				if not is_counterstrike:
+					for u: UnitRuntime in data.battlefield:
+						if not u.is_dead and u.is_enemy == defender.is_enemy:
+							u.engaged_opponent = attacker
+							data.trigger_unit_abilities(u, Constants.Trigger.ON_ALLY_HURT_BY_HIT)
 		else:
 			Console.print_line("* [%s] is too weak to attack" % attacker)
 	else:

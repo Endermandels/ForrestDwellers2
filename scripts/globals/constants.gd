@@ -11,6 +11,7 @@ enum Trigger {
 	## Attack
 
 	ON_HIT,
+	ON_ALLY_HURT_BY_HIT,
 	ON_WOUNDED_BY_HIT,
 
 	## Anytime
@@ -31,6 +32,7 @@ enum TargetRule {
 	OPPONENT_ACROSS, ## Opponent directly opposing this unit
 	OPPONENT_ENGAGED, ## Opponent this unit is in combat with
 	OPPONENT_HIGHEST_HP, ## Opponent with the highest HP
+	OPPONENT_LOWEST_HP, ## Opponent with the lowest HP
 	DEAD_ACROSS, ## Dead unit (either ally or opponent) or the lowest health opponent accross 
 	ALL_OPPONENTS_ACROSS, ## All opposing units directly across from this unit 
 	ALL_OPPONENTS, ## All opposing units
@@ -58,6 +60,8 @@ enum UnitStat {
 	ALIVE_DEFENSE,
 	ARMORED_DEFENSE,
 	FULL_HEALTH_DEFENSE,
+	
+	IS_FLYING,
 }
 
 enum AbilityConditionOperation {

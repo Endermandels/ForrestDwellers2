@@ -10,7 +10,7 @@ func init(res: AddAbilityResource) -> void:
 	name_id = "Add Ability Effect"
 
 # Source is always the ability holder, so if from_enemy is enabled, the target must be the engaged opponent
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	if not from_enemy:
 		if target.is_dead:
 			Console.print_line("* [%s] is dead" % target)

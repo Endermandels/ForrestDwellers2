@@ -7,7 +7,7 @@ func init(res: ApplyStatusEffectResource) -> void:
 	se_res = res.status_effect
 	name_id = "Apply Status Effect"
 
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	var se_run: StatusEffectRuntime = StatusEffectRuntime.from_resource(se_res, source)
 	var found_status_effect: bool = false
 

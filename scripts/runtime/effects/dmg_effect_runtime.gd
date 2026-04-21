@@ -9,7 +9,7 @@ func init(res: DMGEffectResource) -> void:
 	is_pure = res.is_pure
 	dmg = res.dmg
 
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	var dmg_mod: int = dmg
 
 	if target.is_dead:

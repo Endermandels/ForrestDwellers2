@@ -118,6 +118,12 @@ func get_targets(source: UnitRuntime, target_rule: Constants.TargetRule, bf: Arr
 		if valid_targets.size() > 0:
 			valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.hp > y.hp)
 			res.append(valid_targets[0])
+
+	elif target_rule == Constants.TargetRule.OPPONENT_LOWEST_HP:
+		var valid_targets = _get_valid_targets_across(source, bf)
+		if valid_targets.size() > 0:
+			valid_targets.sort_custom(func (x: UnitRuntime, y: UnitRuntime): return x.hp < y.hp)
+			res.append(valid_targets[0])
 	
 	elif target_rule == Constants.TargetRule.DEAD_ACROSS:
 		var valid_targets = _get_valid_targets_across(source, bf)

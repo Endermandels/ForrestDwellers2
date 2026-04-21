@@ -7,5 +7,5 @@
 [resource]
 script = ExtResource("3_srp1o")
 name_id = "Flight"
-triggers = Array[int]([8])
+triggers = Array[int]([9])
 metadata/_custom_type_script = "uid://dpoiljl72xoph"

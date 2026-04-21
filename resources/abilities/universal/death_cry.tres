@@ -20,6 +20,6 @@ metadata/_custom_type_script = "uid://d00scq1pm4o5o"
 [resource]
 script = ExtResource("5_o34vg")
 name_id = "Death Cry"
-triggers = Array[int]([6])
+triggers = Array[int]([7])
 effects = Array[ExtResource("2_pwj2b")]([SubResource("Resource_mmmic")])
 metadata/_custom_type_script = "uid://dpoiljl72xoph"

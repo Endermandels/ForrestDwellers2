@@ -36,7 +36,7 @@ metadata/_custom_type_script = "uid://c4uhiclqhppgn"
 [resource]
 script = ExtResource("3_jcw0b")
 name_id = "Scavenger"
-triggers = Array[int]([8, 3])
+triggers = Array[int]([9, 3])
 conditions = Array[ExtResource("1_kwpn5")]([SubResource("Resource_6ee2y"), SubResource("Resource_kwpn5")])
 effects = Array[ExtResource("2_wo6aj")]([SubResource("Resource_ru2cx"), SubResource("Resource_xgbch"), SubResource("Resource_mr01r")])
 passive = 1

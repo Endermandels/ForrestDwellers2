@@ -1,0 +1,4 @@
+@tool
+extends EffectResource
+class_name CounterstrikeEffectResource
+

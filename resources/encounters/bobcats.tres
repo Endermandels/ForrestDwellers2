@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=5 format=3 uid="uid://cnqqj3tt0omlq"]
+
+[ext_resource type="Script" uid="uid://rjnstbmhir1t" path="res://scripts/resources/unit_resource.gd" id="1_2de1w"]
+[ext_resource type="Script" uid="uid://dyxplp8h42jir" path="res://scripts/resources/encounter_resource.gd" id="2_qin47"]
+[ext_resource type="Resource" uid="uid://bnalxsg4uwcyq" path="res://resources/units/bobcat.tres" id="2_thprt"]
+[ext_resource type="Resource" uid="uid://cdoixu8ii3eji" path="res://resources/units/wolf.tres" id="3_mnr6f"]
+
+[resource]
+script = ExtResource("2_qin47")
+frontline_units = Array[ExtResource("1_2de1w")]([ExtResource("2_thprt"), ExtResource("3_mnr6f"), null])
+metadata/_custom_type_script = "uid://dyxplp8h42jir"

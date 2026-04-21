@@ -7,7 +7,7 @@ func init(res: HEALEffectResource) -> void:
 	name_id = "HEAL"
 	heal = res.heal
 
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	if target.is_dead:
 		Console.print_line("* [%s] is dead" % target)
 		return

@@ -17,6 +17,8 @@ static func from_resource(res: EffectResource) -> EffectRuntime:
 		return HEALEffectRuntime.new(res)
 	if res is AddAbilityResource:
 		return AddAbilityRuntime.new(res)
+	if res is CounterstrikeEffectResource:
+		return CounterstrikeEffectRuntime.new(res)
 	push_error("No runtime registered for: %s" % res.get_class())
 	return EffectRuntime.new(res)
 
@@ -35,6 +37,6 @@ func init(res) -> void:
 	# TODO: Implement
 	pass
 
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	# TODO: Implement
 	pass

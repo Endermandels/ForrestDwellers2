@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="AbilityResource" load_steps=7 format=3 uid="uid://ccuq41lp5svkm"]
+
+[ext_resource type="Script" uid="uid://d084ilajke2li" path="res://scripts/resources/ability_condition_resource.gd" id="1_bahck"]
+[ext_resource type="Script" uid="uid://4cn21vk6dwbs" path="res://scripts/resources/effect_resource.gd" id="2_vk7uh"]
+[ext_resource type="Script" uid="uid://dpoiljl72xoph" path="res://scripts/resources/ability_resource.gd" id="3_unme0"]
+[ext_resource type="Script" uid="uid://boifeos4aqjbs" path="res://scripts/resources/effects/counterstrike_effect_resource.gd" id="3_vk7uh"]
+
+[sub_resource type="Resource" id="Resource_bahck"]
+script = ExtResource("1_bahck")
+left_units = 2
+left_stats = 17
+condition_type = 0
+boolean = true
+metadata/_custom_type_script = "uid://d084ilajke2li"
+
+[sub_resource type="Resource" id="Resource_unme0"]
+script = ExtResource("3_vk7uh")
+target_rule = 2
+metadata/_custom_type_script = "uid://boifeos4aqjbs"
+
+[resource]
+script = ExtResource("3_unme0")
+name_id = "Ambush"
+triggers = Array[int]([4])
+conditions = Array[ExtResource("1_bahck")]([SubResource("Resource_bahck")])
+effects = Array[ExtResource("2_vk7uh")]([SubResource("Resource_unme0")])
+metadata/_custom_type_script = "uid://dpoiljl72xoph"

@@ -7,7 +7,7 @@ func init(res: DRNEffectResource) -> void:
 	name_id = "DRN"
 	drn = res.drn
 
-func apply(source: UnitRuntime, target: UnitRuntime) -> void:
+func apply(source: UnitRuntime, target: UnitRuntime, data = null) -> void:
 	if target.is_dead:
 		Console.print_line("* [%s] is dead" % target)
 		return
